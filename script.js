@@ -1,73 +1,62 @@
 
-const y=document.getElementById('year'); if(y) y.textContent=new Date().getFullYear();
-document.getElementById('hamb')?.addEventListener('click',()=>document.getElementById('nav').classList.toggle('open'));
-// active nav
-document.querySelectorAll('.nav a').forEach(a=>{
-  if(location.pathname.endsWith(a.getAttribute('href'))) a.style.opacity=1;
-});
-// copy + toast
-(function(){
-  const toast = document.getElementById('toast');
-  function showToast(msg){
-    if(!toast) return;
-    toast.textContent = msg || 'コピーしました';
-    toast.classList.add('show');
-    setTimeout(()=>toast.classList.remove('show'), 1600);
+// ===== Mobile nav (hamburger) =====
+document.addEventListener('DOMContentLoaded', () => {
+  const hamb = document.getElementById('hamb');
+  const nav  = document.getElementById('nav');
+  if(hamb && nav){
+    hamb.addEventListener('click', ()=> nav.classList.toggle('open'));
   }
-  document.addEventListener('click', (e)=>{
-    const btn = e.target.closest('[data-copy]');
-    if(!btn) return;
-    navigator.clipboard.writeText(btn.getAttribute('data-copy')||'').then(()=>showToast('コピーしました'));
-  });
-})();
-// ---- Lightbox for .img-grid ----
-(function(){
+});
+
+// ===== Lightbox for .img-grid =====
+document.addEventListener('DOMContentLoaded', function(){
   const gridImgs = Array.from(document.querySelectorAll('.img-grid img'));
   if(!gridImgs.length) return;
 
-  const lb   = document.getElementById('lightbox');
-  const img  = document.getElementById('lbImg');
-  const cap  = document.getElementById('lbCap');
-  const prev = document.getElementById('lbPrev');
-  const next = document.getElementById('lbNext');
-  const xbtn = document.getElementById('lbClose');
+  // Create container if not present
+  let lb = document.getElementById('lightbox');
+  if(!lb){
+    lb = document.createElement('div');
+    lb.className = 'lightbox'; lb.id = 'lightbox';
+    lb.innerHTML = `
+      <button class="close" aria-label="閉じる" id="lbClose">×</button>
+      <div class="nav"><button class="btn" id="lbPrev">‹</button><button class="btn" id="lbNext">›</button></div>
+      <img id="lbImg" src="" alt=""><div class="caption" id="lbCap"></div>`;
+    document.body.appendChild(lb);
+  }
+
+  const img  = lb.querySelector('#lbImg');
+  const cap  = lb.querySelector('#lbCap');
+  const prev = lb.querySelector('#lbPrev');
+  const next = lb.querySelector('#lbNext');
+  const xbtn = lb.querySelector('#lbClose');
 
   let idx = 0;
-
-  function open(i){
+  function show(i){
     idx = i;
     const el = gridImgs[idx];
-    img.src = el.src;
+    img.src = el.currentSrc || el.src;
     img.alt = el.alt || '';
     cap.textContent = el.alt || '';
     lb.classList.add('active');
     document.body.style.overflow = 'hidden';
   }
-  function close(){
+  function hide(){
     lb.classList.remove('active');
-    img.src = '';
+    setTimeout(()=>{ img.src=''; }, 180);
     document.body.style.overflow = '';
   }
-  function nav(d){
-    idx = (idx + d + gridImgs.length) % gridImgs.length;
-    open(idx);
-  }
+  function nav(d){ idx = (idx + d + gridImgs.length) % gridImgs.length; show(idx); }
 
-  gridImgs.forEach((el,i)=>{
-    el.style.cursor = 'zoom-in';
-    el.addEventListener('click', ()=> open(i));
-  });
-
+  gridImgs.forEach((el,i)=> el.addEventListener('click', ()=> show(i), {passive:true}) );
   prev.addEventListener('click', e=>{e.stopPropagation(); nav(-1);});
   next.addEventListener('click', e=>{e.stopPropagation(); nav(1);});
-  xbtn.addEventListener('click', close);
-  lb.addEventListener('click', (e)=>{ if(e.target === lb) close(); });
-
-  // 键盘：Esc 关闭，←/→ 切换
+  xbtn.addEventListener('click', hide);
+  lb.addEventListener('click', (e)=>{ if(e.target === lb) hide(); });
   document.addEventListener('keydown', (e)=>{
     if(!lb.classList.contains('active')) return;
-    if(e.key === 'Escape') close();
+    if(e.key === 'Escape') hide();
     if(e.key === 'ArrowLeft') nav(-1);
     if(e.key === 'ArrowRight') nav(1);
   });
-})();
+});
