@@ -1,0 +1,89 @@
+<!DOCTYPE html><html lang="ja"><head>
+<title>ESPORTS CAFE 5G — HOME</title>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800;900&family=Noto+Sans+JP:wght@400;600;700;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="./styles.css"/>
+
+</head><body>
+
+<header class="hdr">
+  <div class="wrap row">
+<a href="index.html" class="brand">
+  <img src="./assets/img/5G01.png" alt="ESPORTS CAFE 5G" class="brand-logo">
+  <span class="brandtxt">ESPORTS CAFE</span>
+</a>
+
+
+<nav class="nav" id="nav">
+  <a href="index.html"><span class="en">HOME</span><span class="jp">ホーム</span></a>
+  <a href="price.html"><span class="en">PRICE</span><span class="jp">料金</span></a>
+  <a href="spec.html"><span class="en">PC SPEC</span><span class="jp">スペック</span></a>
+  <a href="guide.html"><span class="en">GUIDE</span><span class="jp">利用案内</span></a>
+  <a href="faq.html"><span class="en">FAQ</span><span class="jp">よくある質問</span></a>
+  <a href="contact.html"><span class="en">CONTACT</span><span class="jp">お問い合わせ</span></a>
+</nav>
+
+
+    <button id="hamb" class="hamb" aria-label="menu"><span></span><span></span><span></span></button>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="hero mp" style="background: url('./assets/img/stations_angle.jpg') center/cover no-repeat;">
+  <div class="wrap hero-inner">
+    <h1 class="glow">ESPORTS CAFE 5G</h1>
+    <p class="lead">新大久保の最強スペック｜R9 9950X3D /RTX 5080 / 540HZ /搭載</p>
+    <div class="cta">
+      <a class="btn primary" href="price.html">料金を見る</a>
+    </div>
+  </div>
+</section>
+
+<section class="panel wrap">
+  <h2 class="st">NEWS</h2>
+  <div class="cards">
+    <article class="card glass">
+      <h3>ホームページ更新</h3>
+      <p>デザインリニューアル／モバイル最適化／ご利用ガイド整備。</p>
+    </article>
+
+    <article class="card glass">
+      <h3>友達紹介キャンペーン</h3>
+      <p>紹介した人・された人に４時間分チャージプレゼント。※初回登録は￥1,100～</p>
+    </article>
+  </div>
+</section>
+
+
+<!-- GALLERY -->
+<section id="gallery" class="panel wrap">
+  <h2 class="st">GALLERY</h2>
+  <div class="img-grid">
+    <figure><img src="./assets/img/rigs_top_row.jpg" alt="上段PCリグ" loading="lazy"></figure>
+    <figure><img src="./assets/img/stations_row.jpg" alt="席列" loading="lazy"></figure>
+    <figure><img src="./assets/img/stations_angle.jpg" alt="席全景（斜め）" loading="lazy"></figure>
+    <figure><img src="./assets/img/open_frame_rig.jpg" alt="オープンフレームPC" loading="lazy"></figure>
+    <figure><img src="./assets/img/parts_stack.jpg" alt="最新パーツ一式" loading="lazy"></figure>
+    <figure><img src="./assets/img/building_exterior.jpg" alt="店舗外観" loading="lazy"></figure>
+  </div>
+
+<footer class="ftr">
+  <div class="wrap row">
+    <p>© <span id="year"></span> ESPORTS CAFE 5G</p>
+  </div>
+</footer>
+<script src="./script.js"></script>
+<!-- Lightbox 容器 -->
+<div class="lightbox" id="lightbox" aria-modal="true" role="dialog">
+  <button class="close" aria-label="閉じる" id="lbClose">×</button>
+  <div class="nav">
+    <button class="btn" id="lbPrev" aria-label="前の画像">‹</button>
+    <button class="btn" id="lbNext" aria-label="次の画像">›</button>
+  </div>
+  <img id="lbImg" src="" alt="">
+  <div class="caption" id="lbCap"></div>
+</div>
+</body></html>
