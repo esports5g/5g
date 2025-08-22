@@ -1,92 +1,119 @@
-<!DOCTYPE html><html lang="ja"><head>
-<title>ESPORTS CAFE 5G — CONTACT</title>
-<meta charset="utf-8"/>
-<meta name="viewport" content="width=device-width, initial-scale=1"/>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800;900&family=Noto+Sans+JP:wght@400;600;700;900&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="./styles.css"/>
-
-</head><body>
-
-<header class="hdr">
-  <div class="wrap row">
-    <a href="index.html" class="brand"><span class="logo-mini">5G</span><span class="brandtxt">ESPORTS CAFE</span></a>
-<nav class="nav" id="nav">
-  <a href="index.html"><span class="en">HOME</span><span class="jp">ホーム</span></a>
-  <a href="price.html"><span class="en">PRICE</span><span class="jp">料金</span></a>
-  <a href="spec.html"><span class="en">PC SPEC</span><span class="jp">スペック</span></a>
-  <a href="guide.html"><span class="en">GUIDE</span><span class="jp">利用案内</span></a>
-  <a href="faq.html"><span class="en">FAQ</span><span class="jp">よくある質問</span></a>
-  <a href="contact.html"><span class="en">CONTACT</span><span class="jp">お問い合わせ</span></a>
-</nav>
-    <button id="hamb" class="hamb" aria-label="menu"><span></span><span></span><span></span></button>
-  </div>
-</header>
-
-<section id="contact" class="panel alt contact-pro">
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>お問い合わせ | ESportsCafe 5G</title>
+  <style>
+    :root{
+      --bg:#0e0e0f; --card:#151517; --text:#eaeaea; --muted:#a3a3a3; --accent:#c9a646; --error:#ff6b6b;
+    }
+    *{box-sizing:border-box}
+    body{margin:0; font-family:system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,'Noto Sans JP','Hiragino Kaku Gothic ProN','Yu Gothic',sans-serif; background:var(--bg); color:var(--text);}
+    .wrap{max-width:880px; margin:40px auto; padding:24px; }
+    .card{background:linear-gradient(180deg,rgba(255,255,255,0.04),rgba(255,255,255,0.02)); border:1px solid rgba(255,255,255,0.08); border-radius:16px; padding:28px; box-shadow:0 10px 25px rgba(0,0,0,0.3)}
+    h1{font-size:clamp(24px,3vw,32px); margin:0 0 8px; letter-spacing:0.02em}
+    p.lead{color:var(--muted); margin-top:0}
+    form{display:grid; gap:16px; margin-top:16px}
+    label{font-weight:600; font-size:14px; color:#dcdcdc}
+    input, textarea, select{width:100%; padding:14px 14px; border-radius:12px; border:1px solid rgba(255,255,255,0.12); background:#0f0f11; color:var(--text); outline:none}
+    input:focus, textarea:focus{border-color:var(--accent); box-shadow:0 0 0 3px rgba(201,166,70,0.2)}
+    .row{display:grid; grid-template-columns:1fr 1fr; gap:16px}
+    .btn{display:inline-flex; align-items:center; justify-content:center; gap:10px; padding:14px 18px; border-radius:12px; background:var(--accent); color:#1a1a1a; font-weight:700; border:none; cursor:pointer}
+    .hint{color:var(--muted); font-size:12px}
+    .status{margin-top:8px; min-height:20px; font-size:14px}
+    .ok{color:#8df0b3} .ng{color:var(--error)}
+    .req::after{content:" *"; color:var(--accent)}
+    .hp{position:absolute; left:-9999px; width:1px; height:1px; overflow:hidden}
+    .footer{margin-top:18px; color:var(--muted); font-size:12px}
+    @media (max-width:700px){ .row{grid-template-columns:1fr} }
+  </style>
+</head>
+<body>
   <div class="wrap">
-    <h2 class="st">お問い合わせ</h2>
-    <p class="muted">ご質問・団体予約・貸切のご相談など、お気軽にお問い合わせください。</p>
+    <div class="card">
+      <h1>お問い合わせ / 联系我们 / Contact</h1>
+      <p class="lead">ご質問・お見積り・予約など、こちらのフォームからお気軽にお送りください。送信後、自動確認メールは送信されませんが、担当より折り返しご連絡いたします。</p>
 
-    <div class="contact-grid">
-      <div class="info-stack">
-        <article class="info-card glass neon-anim">
-          <h3>ACCESS</h3>
-          <p><b>住所</b><br>東京都新宿区百人町2-4-2 ヤマキビル4F（JR新大久保駅 徒歩1分）</p>
-          <div class="row">
-            <a class="btn primary" href="https://maps.google.com/?q=東京都新宿区百人町2-4-2 ヤマキビル4F" target="_blank" rel="noreferrer">Google Map</a>
-            <button class="btn ghost" data-copy="東京都新宿区百人町2-4-2 ヤマキビル4F">住所をコピー</button>
+      <form id="contactForm" method="POST" action="/api/contact">
+        <div class="row">
+          <div>
+            <label class="req" for="name">お名前 / 姓名 / Name</label>
+            <input id="name" name="name" placeholder="例）山田 太郎 / 张三 / Alex" required maxlength="80" />
           </div>
-        </article>
-
-        <article class="info-card glass">
-          <h3>CONTACT</h3>
-          <div class="channels">
-            <div class="ch">
-              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M2 6l10 7L22 6v12H2z"/><path d="M2 6l10 7L22 6H2z" opacity=".5"/></svg>
-              <a href="mailto:esportscafe5g@gmail.com" class="link">esportscafe5g@gmail.com</a>
-              <button class="mini" title="コピー" data-copy="esportscafe5g@gmail.com">コピー</button>
-            </div>
-            <div class="ch">
-              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 2h12a2 2 0 012 2v16a2 2 0 01-2 2H6a2 2 0 01-2-2V4a2 2 0 012-2zm6 18a1.5 1.5 0 100-3 1.5 1.5 0 000 3z"/></svg>
-              <a href="tel:+810000000000" class="link">090-9141-6685</a>
-            </div>
+          <div>
+            <label class="req" for="email">メール / 邮箱 / Email</label>
+            <input id="email" name="email" type="email" placeholder="you@example.com" required maxlength="120" />
           </div>
-        </article>
-
-        <article class="info-card glass">
-          <h3>営業時間</h3>
-          <ul class="hours">
-            <li><span>月–日</span><b>24 時間</b></li>
-            <li><span>休業</span><b>イベント等で臨時休業あり</b></li>
-          </ul>
-        </article>
-      </div>
-
-      <div class="gform-pro neon-anim">
-        <div class="gform-head"><span>お問い合わせフォーム</span></div>
-        <div class="gform-body">
-          <div class="gform-loader">Loading…</div>
-          <iframe
-            class="gform-frame"
-            src="https://docs.google.com/forms/d/e/1FAIpQLSf4STHLCozrk4GxAC68MwUvbFeHpqr13kJAfDp1Klv-6i7gQg/viewform?embedded=true"
-            title="お問い合わせフォーム"
-            loading="lazy"
-            onload="this.previousElementSibling.style.opacity=0">
-          </iframe>
         </div>
-      </div>
+
+        <div class="row">
+          <div>
+            <label for="phone">電話番号 / 电话 / Phone</label>
+            <input id="phone" name="phone" placeholder="080-XXXX-XXXX" maxlength="30" />
+          </div>
+          <div>
+            <label for="topic">用件 / 主题 / Topic</label>
+            <select id="topic" name="topic">
+              <option value="general">一般お問い合わせ</option>
+              <option value="estimate">団体利用見積もり / 团体利用报价</option>
+              <option value="support">苦情 / 反馈</option>
+            </select>
+          </div>
+        </div>
+
+        <div>
+          <label class="req" for="message">内容 / 内容 / Message</label>
+          <textarea id="message" name="message" rows="6" placeholder="できるだけ詳しくご記入ください / 请尽量详细说明..." required maxlength="2000"></textarea>
+          <div class="hint">最大 2000 文字</div>
+        </div>
+
+        <!-- Honeypot -->
+        <input type="text" name="website" class="hp" tabindex="-1" autocomplete="off" />
+
+        <button class="btn" type="submit">送信 / 发送 / Send</button>
+        <div id="status" class="status"></div>
+      </form>
     </div>
-
-    <div id="toast" class="toast" role="status" aria-live="polite">コピーしました</div>
   </div>
-</section>
 
-<footer class="ftr">
-  <div class="wrap row">
-    <p>© <span id="year"></span> ESPORTS CAFE 5G</p>
-  </div>
-</footer>
-<script src="./script.js"></script>
-</body></html>
+  <script>
+  const form = document.getElementById('contactForm');
+  const status = document.getElementById('status');
+
+  function show(msg, ok=true){
+    status.textContent = msg;
+    status.className = 'status ' + (ok ? 'ok' : 'ng');
+  }
+
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    status.textContent = '送信中... / Sending...';
+    const fd = new FormData(form);
+
+    // Basic client-side guard: check honeypot and content length
+    if (fd.get('website')) { show('Spam detected.', false); return; }
+    if ((fd.get('message')||'').length < 5) { show('内容をもう少し詳しくご記入ください。', false); return; }
+
+    try{
+      const body = new URLSearchParams(Array.from(fd.entries()));
+      const resp = await fetch(form.action, {
+        method: 'POST',
+        headers: { 'Accept':'application/json', 'Content-Type':'application/x-www-form-urlencoded' },
+        body
+      });
+      const data = await resp.json().catch(()=>({}));
+      if(resp.ok){
+        show('ありがとうございました。送信が完了しました。/ 已发送，我们会尽快联系您。/ Sent successfully.');
+        form.reset();
+      }else{
+        show(data.error || '送信に失敗しました。時間をおいて再度お試しください。', false);
+      }
+    }catch(err){
+      show('ネットワークエラー：再度お試しください。', false);
+    }
+  });
+  </script>
+  <script defer src="./gas.email.js"></script>
+</body>
+</html>
