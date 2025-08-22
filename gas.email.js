@@ -34,7 +34,7 @@ ${data.message||''}`);
     const status = document.getElementById('status');
     if (!form) return;
     form.addEventListener('submit', async (e)=>{
-      if(!endpoint) return; // let original handler run (fallback to serverless if present)
+      if(!endpoint) return; // use serverless fallback if not configured
       e.preventDefault();
       status.textContent = '送信中... / Sending...';
       const data = serialize(form);
@@ -42,8 +42,8 @@ ${data.message||''}`);
       try{
         const res = await fetch(endpoint, {
           method:'POST',
-          headers:{'Content-Type':'application/json'},
-          body: JSON.stringify({
+          headers:{'Content-Type':'application/x-www-form-urlencoded'},
+          body: new URLSearchParams({
             to: to,
             name: data.name,
             email: data.email,
@@ -58,7 +58,6 @@ ${data.message||''}`);
           status.className='status ok';
           form.reset();
         }else{
-          // If GAS returns non-OK, fallback to mailto to guarantee user can still reach you
           mailtoFallback(data, to);
         }
       }catch(err){
