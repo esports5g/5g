@@ -33,12 +33,25 @@ ${data.message||''}`);
     const form = document.getElementById('contactForm');
     const status = document.getElementById('status');
     if (!form) return;
+
+    // Ensure we only hook once
+    if (window.__GAS_CONTACT_HOOKED__) return;
+    window.__GAS_CONTACT_HOOKED__ = true;
+
     form.addEventListener('submit', async (e)=>{
-      if(!endpoint) return; // use serverless fallback if not configured
+      if(!endpoint) return; // no GAS configured -> let other handlers run
+      // Stop default submit and STOP other listeners (e.g., /api/contact handler)
       e.preventDefault();
+      if (e.stopImmediatePropagation) e.stopImmediatePropagation();
+      if (e.stopPropagation) e.stopPropagation();
+
+      if (form.dataset.sending === '1') return;
+      form.dataset.sending = '1';
+
       status.textContent = '送信中... / Sending...';
       const data = serialize(form);
-      if (data.website) { status.textContent = 'Spam detected.'; status.className='status ng'; return; }
+      if (data.website) { status.textContent = 'Spam detected.'; status.className='status ng'; form.dataset.sending=''; return; }
+
       try{
         const res = await fetch(endpoint, {
           method:'POST',
@@ -63,6 +76,8 @@ ${data.message||''}`);
       }catch(err){
         console.error(err);
         mailtoFallback(data, to);
+      } finally {
+        form.dataset.sending='';
       }
     }, {capture:true});
   });
