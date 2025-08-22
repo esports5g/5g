@@ -23,11 +23,30 @@
     .ok{color:var(--ok)}
     .footer{margin-top:18px; color:var(--muted); font-size:12px}
     @media (max-width:700px){ .row{grid-template-columns:1fr} }
+  
+    /* Back button */
+    .topbar{display:flex;justify-content:flex-start;margin-bottom:12px}
+    .backbtn{
+      display:inline-flex;align-items:center;gap:8px;
+      padding:10px 12px;border-radius:10px;
+      border:1px solid rgba(255,255,255,.12);
+      background:#0f0f11;color:var(--text);cursor:pointer;
+      transition:all .2s ease;
+    }
+    .backbtn:hover{border-color:var(--accent);box-shadow:0 0 0 3px rgba(201,166,70,.15)}
+    .backbtn .arr{font-weight:900;font-size:16px;line-height:1}
+    .backbtn .txt{font-weight:700;font-size:14px;letter-spacing:.02em}
   </style>
 </head>
 <body>
   <div class="wrap">
     <div class="card">
+      <div class="topbar">
+        <button class="backbtn" id="goBack" aria-label="戻る / 返回 / Back">
+          <span class="arr">←</span>
+          <span class="txt">戻る / 返回 / Back</span>
+        </button>
+      </div>
       <h1>お問い合わせ / 联系我们 / Contact</h1>
       <p class="lead">ご質問・お見積り・予約など、こちらのフォームからお気軽にお送りください。送信後、自動返信はありませんが、担当より折り返しご連絡いたします。</p>
 
@@ -75,5 +94,19 @@
   </div>
 
   <script defer src="./gas.email.js"></script>
+
+  <script>
+    // Back button behavior: go to previous page, otherwise go to index.html
+    document.addEventListener('DOMContentLoaded', function(){
+      var btn = document.getElementById('goBack');
+      if(btn){
+        btn.addEventListener('click', function(e){
+          e.preventDefault();
+          if (history.length > 1) history.back();
+          else window.location.href = 'index.html';
+        });
+      }
+    });
+  </script>
 </body>
 </html>
