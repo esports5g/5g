@@ -102,3 +102,54 @@ img{max-width:100%;height:auto;display:block}
   .btn.big{padding:13px 18px}
   .lightbox .btn{width:48px;height:48px}
 }
+/* === Gallery 滚动出现 === */
+.img-grid figure.reveal{
+  opacity:0;
+  transform: translateY(16px) scale(.98);
+  filter:saturate(.85);
+  transition: opacity .5s ease, transform .6s ease, filter .6s ease;
+}
+.img-grid figure.reveal.show{
+  opacity:1;
+  transform:none;
+  filter:saturate(1);
+}
+/* 轻微错峰 */
+.img-grid figure.reveal:nth-child(2n){ transition-delay:.06s; }
+.img-grid figure.reveal:nth-child(3n){ transition-delay:.12s; }
+/* === Mobile gallery polish === */
+.img-grid img{
+  width:100%;
+  height:auto;
+  display:block;
+  aspect-ratio: 4/3;      /* 统一比例，防止抖动 */
+  object-fit: cover;
+}
+
+/* 手机/平板的栅格与留白 */
+@media (max-width: 768px){
+  .img-grid{ gap:12px; padding:0 10px; }
+}
+@media (min-width: 641px) and (max-width: 900px){
+  .img-grid{ display:grid; grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 640px){
+  .img-grid{ display:grid; grid-template-columns: 1fr; }
+}
+
+/* 横向滑动版本（方案B）的移动端细节 */
+.img-grid.scroll-x{
+  -webkit-overflow-scrolling: touch;  /* iOS 惯性 */
+  overscroll-behavior-x: contain;
+  scrollbar-width: none;
+}
+.img-grid.scroll-x::-webkit-scrollbar{ display:none; }
+.img-grid.scroll-x > figure{ width:min(88vw, 420px); }
+@media (min-width:1024px){
+  .img-grid.scroll-x > figure{ width:min(420px, 32vw); }
+}
+
+/* 减少动效时的可访问性 */
+@media (prefers-reduced-motion: reduce){
+  .img-grid figure.reveal{ transition:none; opacity:1; transform:none; filter:none; }
+}

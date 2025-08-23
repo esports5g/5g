@@ -60,3 +60,49 @@ document.addEventListener('DOMContentLoaded', function(){
     if(e.key === 'ArrowRight') nav(1);
   });
 });
+// === Gallery: scroll-reveal ===
+document.addEventListener('DOMContentLoaded', () => {
+  const figs = document.querySelectorAll('.img-grid figure');
+  if(!figs.length) return;
+  figs.forEach(f => f.classList.add('reveal'));
+  const io = new IntersectionObserver((ents)=>{
+    ents.forEach(e => { if(e.isIntersecting) e.target.classList.add('show'); });
+  }, { threshold:0.2 });
+  figs.forEach(f => io.observe(f));
+});
+// === Mobile: lazy load images (节流首屏) ===
+document.addEventListener('DOMContentLoaded', () => {
+  document.querySelectorAll('.img-grid img').forEach(img => {
+    if (!img.getAttribute('loading')) img.setAttribute('loading', 'lazy');
+  });
+});
+
+// === Gallery: auto-scroll (方案B) - mobile aware & respects reduced motion ===
+document.addEventListener('DOMContentLoaded', () => {
+  const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  document.querySelectorAll('.img-grid.scroll-x.auto-scroll').forEach((el)=>{
+    if (reduce) return; // 用户偏好“减少动效”则停用
+
+    let dir = 1, rafId = null;
+    const isMobile = window.matchMedia('(max-width: 768px)').matches;
+    const speed = isMobile ? 0.25 : 0.6; // 手机上更慢更稳
+
+    const tick = () => {
+      el.scrollLeft += dir * speed;
+      if (el.scrollLeft + el.clientWidth >= el.scrollWidth - 1) dir = -1;
+      if (el.scrollLeft <= 0) dir = 1;
+      rafId = requestAnimationFrame(tick);
+    };
+    const start = () => { if(!rafId) rafId = requestAnimationFrame(tick); };
+    const stop  = () => { cancelAnimationFrame(rafId); rafId = null; };
+
+    const io = new IntersectionObserver((ents)=>{
+      ents.forEach(e => e.isIntersecting ? start() : stop());
+    }, { threshold: .1 });
+    io.observe(el);
+
+    // 悬停/触摸/聚焦时暂停，离开继续
+    ['mouseenter','touchstart','focusin'].forEach(ev => el.addEventListener(ev, stop, {passive:true}));
+    ['mouseleave','touchend','blur'].forEach(ev => el.addEventListener(ev, start, {passive:true}));
+  });
+});
