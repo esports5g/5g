@@ -1,10 +1,11 @@
 <!DOCTYPE html>
+
 <html lang="ja">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>お問い合わせ | ESportsCafe 5G</title>
-  <style>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<title>お問い合わせ | ESportsCafe 5G</title><link href="assets/favicon.svg" rel="icon" type="image/svg+xml"/><link href="assets/favicon.svg" rel="shortcut icon"/>
+<style>
     :root{ --bg:#0e0e0f; --card:#151517; --text:#eaeaea; --muted:#a3a3a3; --accent:#c9a646; --ok:#8df0b3; }
     *{box-sizing:border-box}
     body{margin:0; font-family:system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,'Noto Sans JP','Hiragino Kaku Gothic ProN','Yu Gothic',sans-serif; background:var(--bg); color:var(--text);}
@@ -37,65 +38,59 @@
     .backbtn .arr{font-weight:900;font-size:16px;line-height:1}
     .backbtn .txt{font-weight:700;font-size:14px;letter-spacing:.02em}
   </style>
+<link href="assets/site.css" rel="stylesheet"/>
 </head>
 <body>
-  <div class="wrap">
-    <div class="card">
-      <div class="topbar">
-        <button class="backbtn" id="goBack" aria-label="戻る / 返回 / Back">
-          <span class="arr">←</span>
-          <span class="txt">戻る / 返回 / Back</span>
-        </button>
-      </div>
-      <h1>お問い合わせ / 联系我们 / Contact</h1>
-      <p class="lead">ご質問・お見積り・予約など、こちらのフォームからお気軽にお送りください。送信後、自動返信はありませんが、担当より折り返しご連絡いたします。</p>
-
-      <!-- GAS-only: action is #, no inline script -->
-      <form id="contactForm" data-gas-only="1" method="POST" action="#">
-        <div class="row">
-          <div>
-            <label class="req" for="name">お名前 / 姓名 / Name</label>
-            <input id="name" name="name" placeholder="例）山田 太郎 / 张三 / Alex" required maxlength="80" />
-          </div>
-          <div>
-            <label class="req" for="email">メール / 邮箱 / Email</label>
-            <input id="email" name="email" type="email" placeholder="you@example.com" required maxlength="120" />
-          </div>
-        </div>
-
-        <div class="row">
-          <div>
-            <label for="phone">電話番号 / 电话 / Phone</label>
-            <input id="phone" name="phone" placeholder="080-XXXX-XXXX" maxlength="30" />
-          </div>
-          <div>
-            <label for="topic">用件 / 主题 / Topic</label>
-            <select id="topic" name="topic">
-              <option value="general">一般お問い合わせ</option>
-              <option value="estimate">団体利用の見積もり / 团体报价</option>
-              <option value="support">苦情 / 意见</option>
-            </select>
-          </div>
-        </div>
-
-        <div>
-          <label class="req" for="message">内容 / 内容 / Message</label>
-          <textarea id="message" name="message" rows="6" placeholder="できるだけ詳しくご記入ください / 请尽量详细说明..." required maxlength="2000"></textarea>
-          <div class="hint">最大 2000 文字</div>
-        </div>
-
-        <!-- Honeypot -->
-        <input type="text" name="website" tabindex="-1" autocomplete="off" style="position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden" />
-
-        <button class="btn" type="submit">送信 / 发送 / Send</button>
-        <div id="status" class="status"></div>
-      </form>
-    </div>
-  </div>
-
-  <script defer src="./gas.email.js"></script>
-
-  <script>
+<div class="wrap">
+<div class="card">
+<div class="topbar">
+<button aria-label="戻る / 返回 / Back" class="backbtn" id="goBack">
+<span class="arr">←</span>
+<span class="txt">戻る / Back</span>
+</button>
+</div>
+<h1>お問い合わせ / 联系我们 / Contact</h1>
+<p class="lead">ご質問・お見積り・予約など、こちらのフォームからお気軽にお送りください。送信後、自動返信はありませんが、担当より折り返しご連絡いたします。</p>
+<!-- GAS-only: action is #, no inline script -->
+<form action="#" data-gas-only="1" id="contactForm" method="POST">
+<div class="row">
+<div>
+<label class="req" for="name">お名前 / 姓名 / Name</label>
+<input id="name" maxlength="80" name="name" placeholder="例）山田 太郎 / 张三 / Alex" required=""/>
+</div>
+<div>
+<label class="req" for="email">メール / 邮箱 / Email</label>
+<input id="email" maxlength="120" name="email" placeholder="you@example.com" required="" type="email"/>
+</div>
+</div>
+<div class="row">
+<div>
+<label for="phone">電話番号 / 电话 / Phone</label>
+<input id="phone" maxlength="30" name="phone" placeholder="080-XXXX-XXXX"/>
+</div>
+<div>
+<label for="topic">用件 / 主题 / Topic</label>
+<select id="topic" name="topic">
+<option value="general">一般お問い合わせ</option>
+<option value="estimate">団体利用の見積もり / 团体报价</option>
+<option value="support">苦情 / 意见</option>
+</select>
+</div>
+</div>
+<div>
+<label class="req" for="message">内容 / 内容 / Message</label>
+<textarea id="message" maxlength="2000" name="message" placeholder="できるだけ詳しくご記入ください / 请尽量详细说明..." required="" rows="6"></textarea>
+<div class="hint">最大 2000 文字</div>
+</div>
+<!-- Honeypot -->
+<input autocomplete="off" name="website" style="position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden" tabindex="-1" type="text"/>
+<button class="btn" type="submit">送信 / 发送 / Send</button>
+<div class="status" id="status"></div>
+</form>
+</div>
+</div>
+<script defer="" src="./gas.email.js"></script>
+<script>
     // Back button behavior: go to previous page, otherwise go to index.html
     document.addEventListener('DOMContentLoaded', function(){
       var btn = document.getElementById('goBack');
@@ -108,5 +103,53 @@
       }
     });
   </script>
+<footer class="site-footer pro" style="margin-top:0;padding-top:0;border-top:none;text-align:left">
+<div class="container footer-wrap" style="display:block;padding-top:0;text-align:left;overflow-x:auto;white-space:nowrap;padding-bottom:0;margin-top:0">
+<div class="f-col policies">
+<ul class="f-links footer-policies footer-inline" style="margin-top:0;display:flex;align-items:center;justify-content:flex-start;list-style:none;padding:0;margin:0;flex-wrap:nowrap;gap:24px"><li style="white-space:nowrap"><span class="copyright-inline">© ESPORTS CAFE 5G</span></li>
+<li style="display:inline-flex;margin:0;padding:0;white-space:nowrap"><a href="privacy-policy.html" style="text-decoration:none;line-height:1.8;white-space:nowrap">プライバシーポリシー</a></li>
+<li style="display:inline-flex;margin:0;padding:0;white-space:nowrap"><a href="cookie-policy.html" style="text-decoration:none;line-height:1.8;white-space:nowrap">Cookieポリシー</a></li>
+<li style="display:inline-flex;margin:0;padding:0;white-space:nowrap"><a href="antisocial-exclusion.html" style="text-decoration:none;line-height:1.8;white-space:nowrap">反社会的勢力排除</a></li>
+<li style="display:inline-flex;margin:0;padding:0;white-space:nowrap"><a href="information-security.html" style="text-decoration:none;line-height:1.8;white-space:nowrap">情報セキュリティ</a></li>
+<li style="display:inline-flex;margin:0;padding:0;white-space:nowrap"><a href="tokushoho.html" style="text-decoration:none;line-height:1.8;white-space:nowrap">特定商取引法に基づく表示</a></li>
+</ul>
+</div>
+</div>
+<style>.footer-policies{display:flex;gap:12px;flex-wrap:wrap;justify-content:center;align-items:center;}
+.footer-policies li{display:inline-flex;margin:0;list-style:none;}
+footer hr{display:none!important;}
+footer{border-top:none!important;}
+.footer-copyright{margin-bottom:3px!important;padding-bottom:0!important;}
+
+.footer-copyright{margin-bottom:0!important;padding-bottom:0!important;}
+.footer-policies{margin-top:0!important;}
+.site-footer{margin-top:0!important;padding-top:0!important;border-top:none!important;}
+.site-footer .footer-wrap{margin-top:0!important;padding-top:0!important;}
+.ftr{margin-bottom:0!important;padding-bottom:0!important;border-bottom:none!important;}
+footer hr{display:none!important;}
+
+.site-footer{margin-top:0!important;padding-top:0!important;border-top:none!important;text-align:center!important;}
+.site-footer .footer-wrap{display:block!important;margin-top:0!important;padding-top:0!important;}
+.site-footer .footer-copy{display:none!important;}
+.footer-policies{justify-content:center!important;margin-top:0!important;}
+.ftr{margin-bottom:0!important;padding-bottom:0!important;border-bottom:none!important;}
+footer hr{display:none!important;}
+
+.site-footer{margin-top:0!important;padding-top:0!important;border-top:none!important;text-align:left!important;}
+.site-footer .footer-wrap{margin-top:0!important;padding-top:0!important;text-align:left!important;}
+.footer-policies{justify-content:flex-start!important;margin-top:0!important;}
+.ftr{margin-bottom:0!important;padding-bottom:0!important;border-bottom:none!important;text-align:left!important;}
+footer hr{display:none!important;}
+
+.site-footer{margin-top:0!important;padding-top:0!important;border-top:none!important;text-align:left!important;}
+.site-footer .footer-wrap{margin-top:0!important;padding-top:0!important;text-align:left!important;}
+.site-footer .footer-inline{display:flex!important;gap:28px!important;flex-wrap:wrap!important;align-items:center!important;justify-content:flex-start!important;list-style:none!important;padding:0!important;margin:0!important;}
+.site-footer .footer-inline li{display:inline-flex!important;margin:0!important;padding:0!important;}
+.site-footer hr{display:none!important;}
+
+.site-footer .footer-wrap{overflow-x:auto!important;white-space:nowrap!important;padding-bottom:0!important;margin-top:0!important;}
+.site-footer .footer-inline{flex-wrap:nowrap!important;gap:24px!important;}
+.site-footer .footer-inline li, .site-footer .footer-inline a{white-space:nowrap!important;}
+</style></footer>
 </body>
 </html>
