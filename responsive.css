@@ -1,133 +1,48 @@
 /* === Responsive Base (by ChatGPT) === */
+*,*::before,*::after{box-sizing:border-box}
+html,body{margin:0;padding:0}
+html{-webkit-text-size-adjust:100%;font-size:16px}
+body{font-family:system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,"PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;line-height:1.5;padding:env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left)}
+img,svg,video,canvas{max-width:100%;height:auto;display:block}
+.fit-cover{width:100%;height:100%;object-fit:cover;object-position:center}
+.fit-contain{width:100%;height:100%;object-fit:contain}
+.bg-cover{background-size:cover;background-position:center;background-repeat:no-repeat}
+.bg-contain{background-size:contain;background-position:center;background-repeat:no-repeat}
+.container{width:min(100% - 6vw,1200px);margin-inline:auto}
+.grid{display:grid;gap:clamp(12px,2vw,24px)}
+button,a,.tap{min-height:44px;min-width:44px}
+.table-wrap,.scroll-x{overflow-x:auto;-webkit-overflow-scrolling:touch}
+h1{font-size:clamp(22px,4.5vw,36px)}
+h2{font-size:clamp(18px,3.5vw,28px)}
+p,li{font-size:clamp(14px,2.8vw,18px)}
+.card{display:flex;flex-direction:column;min-height:0}
+.ratio-16x9{aspect-ratio:16/9}
+.ratio-4x3{aspect-ratio:4/3}
+.ratio-1x1{aspect-ratio:1/1}
+@media (min-width:480px){.grid.cols-2-sm{grid-template-columns:repeat(2,1fr)}}
+@media (min-width:768px){.grid.cols-2{grid-template-columns:repeat(2,1fr)}.grid.cols-3{grid-template-columns:repeat(3,1fr)}}
+@media (min-width:1024px){.grid.cols-4{grid-template-columns:repeat(4,1fr)}}
 
-/* 1) Reset & box-sizing */
-*, *::before, *::after { box-sizing: border-box; }
-html, body { margin: 0; padding: 0; }
-
-/* 2) Flow & safe area */
-html { 
-  -webkit-text-size-adjust: 100%;
-  font-size: 16px;
-}
-body { 
-  font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
-  line-height: 1.5;
-  padding: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);
-}
-
-/* 3) Media never distorts */
-img, svg, video, canvas { max-width: 100%; height: auto; display: block; }
-
-/* Enforce auto height if height attribute or inline height is set */
-img[height] { height: auto !important; }
-img[style*="height"] { height: auto !important; }
-
-/* Fill container by cropping or fit by containing */
-.fit-cover { width: 100%; height: 100%; object-fit: cover; object-position: center; }
-.fit-contain { width: 100%; height: 100%; object-fit: contain; }
-
-/* Background helpers */
-.bg-cover { background-size: cover; background-position: center; background-repeat: no-repeat; }
-.bg-contain { background-size: contain; background-position: center; background-repeat: no-repeat; }
-
-/* 4) Grid & spacing */
-.container { 
-  width: min(100% - 6vw, 1200px);
-  margin-inline: auto;
-}
-.grid { display: grid; gap: clamp(12px, 2vw, 24px); }
-
-/* 5) Touch targets */
-button, a, .tap { min-height: 44px; min-width: 44px; }
-
-/* 6) Overflow helpers */
-.table-wrap, .scroll-x { overflow-x: auto; -webkit-overflow-scrolling: touch; }
-
-/* 7) Fluid type */
-h1 { font-size: clamp(22px, 4.5vw, 36px); }
-h2 { font-size: clamp(18px, 3.5vw, 28px); }
-p, li { font-size: clamp(14px, 2.8vw, 18px); }
-
-/* 8) Cards */
-.card { display: flex; flex-direction: column; min-height: 0; }
-
-/* 9) Aspect ratios */
-.ratio-16x9 { aspect-ratio: 16 / 9; }
-.ratio-4x3  { aspect-ratio: 4 / 3; }
-.ratio-1x1  { aspect-ratio: 1 / 1; }
-
-/* 10) Content-first breakpoints */
-@media (min-width: 480px) { /* small */
-  .grid.cols-2-sm { grid-template-columns: repeat(2, 1fr); }
-}
-@media (min-width: 768px) { /* tablet */
-  .grid.cols-2 { grid-template-columns: repeat(2, 1fr); }
-  .grid.cols-3 { grid-template-columns: repeat(3, 1fr); }
-}
-@media (min-width: 1024px) { /* desktop */
-  .grid.cols-4 { grid-template-columns: repeat(4, 1fr); }
+/* === Hero mobile tight fit (no gaps, desktop untouched) === */
+@media (max-width:767px){
+  .hero{margin:0!important;padding:0!important;background-size:cover!important;background-position:left 16% center!important;background-repeat:no-repeat!important;min-height:82vh}
+  .hero::after{display:none!important;content:none!important}
+  .hero-inner{padding:0!important}
+  .hero-cta{position:absolute!important;left:50%!important;transform:translateX(-50%)!important;right:auto!important;top:auto!important;bottom:clamp(16px,6vh,48px)!important;width:min(92vw,560px);place-items:center;text-align:center}
+  :where(.hero)+*{margin-top:0!important}
+  .hero+section,.hero+div,.hero+main{padding-top:0!important}
+  header+.hero,.site-header+.hero,.header+.hero{margin-top:0!important}
 }
 
-/* === Hero mobile Scheme A (image instead of bg) === */
-.hero { position: relative; }
-.hero .hero-media { display: none; position: absolute; inset: 0; z-index: 0; }
-.hero .hero-media .hero-img { width: 100%; height: 100%; object-fit: contain; display: block; }
-/* Make hero content sit above the media */
-.hero .hero-inner, .hero .hero-cta { position: relative; z-index: 1; }
-
-@media (max-width: 767px) {
-  /* turn off background on mobile, show <img> instead */
-  .hero { background: none !important; }
-  .hero .hero-media { display: block; }
-}
-
-/* On mobile, use a dedicated safe-crop image and keep background rendering */
-
-}
-
-
-/* === Hero mobile polished (cover + gradient footer + glass CTA) === */
-@media (max-width: 767px) {
-  .hero {
-    /* keep the background image from desktop inline style; ensure full cover */
-    background-size: cover !important;
-    background-position: left 16% center !important; /* bias left to keep big logo fully visible */
-    background-repeat: no-repeat !important;
-    min-height: 86vh; /* respect original vertical presence */
-  }
-  /* Subtle bottom gradient to separate CTA from busy image without hard split */
-  .hero::after {
-    content: "";
-    position: absolute;
-    left: 0; right: 0; bottom: 0;
-    height: 42%;
-    background: linear-gradient(to bottom, rgba(0,0,0,0) 0%, rgba(5,7,12,0.85) 85%, rgba(5,7,12,1) 100%);
-    pointer-events: none;
-    z-index: 0;
-  }
-  /* Reposition CTA to bottom center, over the gradient, not over the left-side big text */
-  .hero-cta {
-    position: absolute !important;
-    left: 50% !important;
-    transform: translateX(-50%) !important;
-    right: auto !important;
-    top: auto !important;
-    bottom: clamp(24px, 8vh, 64px) !important;
-    z-index: 1;
-    width: min(92vw, 560px);
-    place-items: center;
-    text-align: center;
-  }
-  /* "Glass" style pill for CTA container to ensure readability on any image */
-  .hero-cta .cta {
-    backdrop-filter: blur(8px);
-    -webkit-backdrop-filter: blur(8px);
-    background: rgba(20, 24, 32, 0.45);
-    border: 1px solid rgba(255,255,255,0.18);
-    box-shadow: 0 10px 30px rgba(0,0,0,0.35);
-  }
-  /* Tighten hero-inner vertical padding so headline doesn't sit too high */
-  .hero-inner { padding-top: clamp(12px, 2vh, 24px); padding-bottom: clamp(8px, 1.8vh, 18px); }
-  /* Never render the Scheme A <img> overlay on mobile */
-  .hero .hero-media { display: none !important; }
+/* === Precise zeroing between Hero and NEWS (mobile only) === */
+@media (max-width: 767px){
+  /* News section containers from index.html */
+  .news-section{ margin-top:0 !important; padding-top:0 !important; }
+  #news-cards{ margin-top:0 !important; padding-top:0 !important; }
+  /* If the news panel uses .panel/.wrap to add spacing, also neutralize on first child after hero */
+  .hero + .panel,
+  .hero + .wrap,
+  .hero + .panel.wrap,
+  .hero + section.panel,
+  .hero + section.panel.wrap{ margin-top:0 !important; padding-top:0 !important; }
 }
