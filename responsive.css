@@ -67,3 +67,16 @@ p, li { font-size: clamp(14px, 2.8vw, 18px); }
 @media (min-width: 1024px) { /* desktop */
   .grid.cols-4 { grid-template-columns: repeat(4, 1fr); }
 }
+
+/* === Hero mobile Scheme A (image instead of bg) === */
+.hero { position: relative; }
+.hero .hero-media { display: none; position: absolute; inset: 0; z-index: 0; }
+.hero .hero-media .hero-img { width: 100%; height: 100%; object-fit: contain; display: block; }
+/* Make hero content sit above the media */
+.hero .hero-inner, .hero .hero-cta { position: relative; z-index: 1; }
+
+@media (max-width: 767px) {
+  /* turn off background on mobile, show <img> instead */
+  .hero { background: none !important; }
+  .hero .hero-media { display: block; }
+}
