@@ -97,3 +97,38 @@ p, li { font-size: clamp(14px, 2.8vw, 18px); }
   }
   .hero .hero-media { display: none !important; }
 }
+
+/* === Hero mobile split layout (no overlap) === */
+@media (max-width: 767px) {
+  /* Use a block pseudo-element to render the visual, then place text below it */
+  .hero {
+    background: none !important;
+    display: block;
+    min-height: unset;
+  }
+  .hero::before {
+    content: "";
+    display: block;
+    height: clamp(260px, 60vw, 520px); /* visual height on phones */
+    background-image: url("assets/img/stations_angle_mobile_safe.jpg");
+    background-size: cover;            /* full cover, no white bars */
+    background-position: left center;
+    background-repeat: no-repeat;
+  }
+  /* Ensure text area has its own background so it never overlays the image */
+  .hero-inner {
+    background: #0b0e16;               /* page theme dark; adjust if needed */
+    padding: clamp(16px, 4vw, 28px) 0;
+  }
+  /* Put CTA in normal flow under the title; no absolute positioning */
+  .hero-cta {
+    position: static !important;
+    transform: none !important;
+    width: auto;
+    margin: clamp(8px, 3vw, 16px) auto 0;
+    place-items: center;
+    text-align: center;
+  }
+  /* Hide the mobile <img> injected by Scheme A to avoid duplication */
+  .hero .hero-media { display: none !important; }
+}
