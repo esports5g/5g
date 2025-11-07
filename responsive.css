@@ -46,3 +46,37 @@ p,li{font-size:clamp(14px,2.8vw,18px)}
   .hero + section.panel,
   .hero + section.panel.wrap{ margin-top:0 !important; padding-top:0 !important; }
 }
+
+/* === Mobile hero: place headline & CTA below background text area (desktop untouched) === */
+@media (max-width: 767px){
+  .hero{
+    /* keep cover look */
+    background-size: cover !important;
+    background-position: left 16% center !important;
+    background-repeat: no-repeat !important;
+    min-height: 88vh; /* ensure enough vertical space */
+    /* reserve a safe top band where background text sits */
+    --hero-safe-top: clamp(220px, 46vw, 320px);
+  }
+  /* push content below the safe band */
+  .hero-inner{
+    padding-top: var(--hero-safe-top) !important;
+    padding-bottom: clamp(12px, 3vh, 20px) !important;
+  }
+  /* make CTA part of normal flow below the headline */
+  .hero-cta{
+    position: static !important;
+    left: auto !important; right: auto !important; top: auto !important; bottom: auto !important;
+    transform: none !important;
+    width: min(92vw, 620px);
+    margin: clamp(12px, 3.2vw, 18px) auto 0 auto !important;
+    place-items: center; text-align: center;
+  }
+  /* center-align headline block if needed */
+  .hero-inner h1, .hero-inner .title, .hero-cta h1{
+    text-align: center;
+  }
+  /* ensure no extra gap with next section */
+  :where(.hero)+*{ margin-top: 0 !important; }
+  .hero+section, .hero+div, .hero+main{ padding-top: 0 !important; }
+}
