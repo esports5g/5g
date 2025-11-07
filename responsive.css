@@ -85,50 +85,49 @@ p, li { font-size: clamp(14px, 2.8vw, 18px); }
 
 }
 
-/* === Hero mobile override: full-cover, no letterbox, left-focused === */
-@media (max-width: 767px) {
-  .hero {
-    background-image: url("assets/img/stations_angle_mobile_safe.jpg") !important;
-    background-size: cover !important;          /* full-cover, no blank edges */
-    background-position: left center !important;/* keep the left-side title safe */
-    background-repeat: no-repeat !important;
-    background-color: #000 !important;
-    min-height: 86vh;                           /* match desktop hero height */
-  }
-  .hero .hero-media { display: none !important; }
-}
 
-/* === Hero mobile split layout (no overlap) === */
+/* === Hero mobile polished (cover + gradient footer + glass CTA) === */
 @media (max-width: 767px) {
-  /* Use a block pseudo-element to render the visual, then place text below it */
   .hero {
-    background: none !important;
-    display: block;
-    min-height: unset;
+    /* keep the background image from desktop inline style; ensure full cover */
+    background-size: cover !important;
+    background-position: left 16% center !important; /* bias left to keep big logo fully visible */
+    background-repeat: no-repeat !important;
+    min-height: 86vh; /* respect original vertical presence */
   }
-  .hero::before {
+  /* Subtle bottom gradient to separate CTA from busy image without hard split */
+  .hero::after {
     content: "";
-    display: block;
-    height: clamp(260px, 60vw, 520px); /* visual height on phones */
-    background-image: url("assets/img/stations_angle_mobile_safe.jpg");
-    background-size: cover;            /* full cover, no white bars */
-    background-position: left center;
-    background-repeat: no-repeat;
+    position: absolute;
+    left: 0; right: 0; bottom: 0;
+    height: 42%;
+    background: linear-gradient(to bottom, rgba(0,0,0,0) 0%, rgba(5,7,12,0.85) 85%, rgba(5,7,12,1) 100%);
+    pointer-events: none;
+    z-index: 0;
   }
-  /* Ensure text area has its own background so it never overlays the image */
-  .hero-inner {
-    background: #0b0e16;               /* page theme dark; adjust if needed */
-    padding: clamp(16px, 4vw, 28px) 0;
-  }
-  /* Put CTA in normal flow under the title; no absolute positioning */
+  /* Reposition CTA to bottom center, over the gradient, not over the left-side big text */
   .hero-cta {
-    position: static !important;
-    transform: none !important;
-    width: auto;
-    margin: clamp(8px, 3vw, 16px) auto 0;
+    position: absolute !important;
+    left: 50% !important;
+    transform: translateX(-50%) !important;
+    right: auto !important;
+    top: auto !important;
+    bottom: clamp(24px, 8vh, 64px) !important;
+    z-index: 1;
+    width: min(92vw, 560px);
     place-items: center;
     text-align: center;
   }
-  /* Hide the mobile <img> injected by Scheme A to avoid duplication */
+  /* "Glass" style pill for CTA container to ensure readability on any image */
+  .hero-cta .cta {
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    background: rgba(20, 24, 32, 0.45);
+    border: 1px solid rgba(255,255,255,0.18);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.35);
+  }
+  /* Tighten hero-inner vertical padding so headline doesn't sit too high */
+  .hero-inner { padding-top: clamp(12px, 2vh, 24px); padding-bottom: clamp(8px, 1.8vh, 18px); }
+  /* Never render the Scheme A <img> overlay on mobile */
   .hero .hero-media { display: none !important; }
 }
