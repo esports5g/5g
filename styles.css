@@ -153,3 +153,59 @@ img{max-width:100%;height:auto;display:block}
 @media (prefers-reduced-motion: reduce){
   .img-grid figure.reveal{ transition:none; opacity:1; transform:none; filter:none; }
 }
+
+
+/* Tagline bar (moved from hero to avoid overlapping the background image) */
+.tagline-bar{
+  position:relative;
+  background:linear-gradient(180deg, rgba(10,16,28,.72), rgba(10,16,28,.9));
+  border-top:1px solid rgba(120,160,255,.25);
+  border-bottom:1px solid rgba(120,160,255,.25);
+}
+.tagline-bar .lead{
+  margin:10px 0;
+  text-align:center;
+  font-weight:700;
+  letter-spacing:.02em;
+}
+
+
+.hero.mp{min-height:86vh;}
+
+
+
+
+
+/* Hero CTA moved to right side (no overlap with background title) */
+.hero{position:relative}
+.hero-cta{
+  position:absolute;
+  left:auto;
+  right:clamp(16px, 6vw, 120px);
+  top:clamp(120px, 26vh, 320px);
+  width:min(44vw, 640px);
+  display:grid;
+  gap:12px;
+  place-items:start;
+  text-align:left;
+  z-index:2;
+}
+/* Mobile: center it to keep safe */
+@media (max-width: 960px){
+  .hero-cta{
+    left:50%;
+    right:auto;
+    top:auto;
+    bottom:clamp(20px, 8vh, 84px);
+    transform:translateX(-50%);
+    width:min(92vw, 680px);
+    place-items:center;
+    text-align:center;
+  }
+}
+
+
+/* Center the CTA button while keeping the tagline left-aligned on desktop */
+.hero-cta .cta{
+  justify-self:center;
+}

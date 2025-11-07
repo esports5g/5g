@@ -1,5 +1,4 @@
 
-// ===== Mobile nav (hamburger) =====
 document.addEventListener('DOMContentLoaded', () => {
   const hamb = document.getElementById('hamb');
   const nav  = document.getElementById('nav');
@@ -8,12 +7,10 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 });
 
-// ===== Lightbox for .img-grid =====
 document.addEventListener('DOMContentLoaded', function(){
   const gridImgs = Array.from(document.querySelectorAll('.img-grid img'));
   if(!gridImgs.length) return;
 
-  // Create container if not present
   let lb = document.getElementById('lightbox');
   if(!lb){
     lb = document.createElement('div');
@@ -60,7 +57,6 @@ document.addEventListener('DOMContentLoaded', function(){
     if(e.key === 'ArrowRight') nav(1);
   });
 });
-// === Gallery: scroll-reveal ===
 document.addEventListener('DOMContentLoaded', () => {
   const figs = document.querySelectorAll('.img-grid figure');
   if(!figs.length) return;
@@ -70,22 +66,20 @@ document.addEventListener('DOMContentLoaded', () => {
   }, { threshold:0.2 });
   figs.forEach(f => io.observe(f));
 });
-// === Mobile: lazy load images (节流首屏) ===
 document.addEventListener('DOMContentLoaded', () => {
   document.querySelectorAll('.img-grid img').forEach(img => {
     if (!img.getAttribute('loading')) img.setAttribute('loading', 'lazy');
   });
 });
 
-// === Gallery: auto-scroll (方案B) - mobile aware & respects reduced motion ===
 document.addEventListener('DOMContentLoaded', () => {
   const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   document.querySelectorAll('.img-grid.scroll-x.auto-scroll').forEach((el)=>{
-    if (reduce) return; // 用户偏好“减少动效”则停用
+    if (reduce) return; 
 
     let dir = 1, rafId = null;
     const isMobile = window.matchMedia('(max-width: 768px)').matches;
-    const speed = isMobile ? 0.25 : 0.6; // 手机上更慢更稳
+    const speed = isMobile ? 0.25 : 0.6; 
 
     const tick = () => {
       el.scrollLeft += dir * speed;
@@ -101,7 +95,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }, { threshold: .1 });
     io.observe(el);
 
-    // 悬停/触摸/聚焦时暂停，离开继续
     ['mouseenter','touchstart','focusin'].forEach(ev => el.addEventListener(ev, stop, {passive:true}));
     ['mouseleave','touchend','blur'].forEach(ev => el.addEventListener(ev, start, {passive:true}));
   });

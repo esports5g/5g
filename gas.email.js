@@ -24,7 +24,6 @@ Email: ${data.email||''}
 
 本文:
 ${data.message||''}`);
-    // 静默回退：不显示错误，直接打开邮件客户端
     window.location.href = `mailto:${to}?subject=${subject}&body=${body}`;
   }
   function withTimeout(promise, ms){
@@ -43,12 +42,10 @@ ${data.message||''}`);
     const status = document.getElementById('status');
     if (!form) return;
 
-    // 防重复绑定
     if (window.__GAS_CONTACT_HOOKED__) return;
     window.__GAS_CONTACT_HOOKED__ = true;
 
     form.addEventListener('submit', async (e)=>{
-      // 只要配置了 GAS，就完全接管，取消其它监听器和默认行为
       if (endpoint) {
         e.preventDefault();
         if (e.stopImmediatePropagation) e.stopImmediatePropagation();
@@ -79,7 +76,7 @@ ${data.message||''}`);
               signal
             });
             return res.ok;
-          }, 12000); // 12s 超时
+          }, 12000); 
           if (ok){
             status.textContent = 'ありがとうございました。送信が完了しました。/ 已发送，我们会尽快联系您。/ Sent successfully.';
             status.className='status ok';
@@ -87,12 +84,10 @@ ${data.message||''}`);
             return;
           }
         }
-        // 若未配置或失败：静默回退到 mailto，不显示红色错误
         mailtoFallback(data, to);
         status.textContent = 'メールソフトに切り替えました。/ 已切换到邮件发送。';
         status.className='status ok';
       }catch(err){
-        // 任何异常也静默回退
         mailtoFallback(data, to);
         status.textContent = 'メールソフトに切り替えました。/ 已切换到邮件发送。';
         status.className='status ok';
