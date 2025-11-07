@@ -80,3 +80,19 @@ p, li { font-size: clamp(14px, 2.8vw, 18px); }
   .hero { background: none !important; }
   .hero .hero-media { display: block; }
 }
+
+/* === Hero Scheme C (mobile-safe background) === */
+/* On mobile, use a dedicated safe-crop image and keep background rendering */
+@media (max-width: 767px) {
+  .hero { 
+    background-image: url("assets/img/stations_angle_mobile_safe.jpg") !important;
+    background-size: contain !important;
+    background-position: top center !important;
+    background-repeat: no-repeat !important;
+    background-color: rgb(20, 7, 49) !important;
+    /* provide stable height for various devices */
+    min-height: clamp(240px, 56vw, 460px);
+  }
+  /* Ensure the Scheme A media is hidden on mobile now */
+  .hero .hero-media { display: none !important; }
+}
