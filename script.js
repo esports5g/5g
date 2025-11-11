@@ -358,3 +358,63 @@ document.addEventListener('DOMContentLoaded', function(){
     mo.observe(document.documentElement, {childList:true, subtree:true});
   });
 })();
+
+
+// === Per-Header Binding (supports multiple headers or different locales) ===
+(function(){
+  function ready(fn){ if(document.readyState!=='loading'){ fn(); } else { document.addEventListener('DOMContentLoaded', fn); } }
+  function isMobile(){ return (window.matchMedia && window.matchMedia('(max-width: 960px)').matches) || window.innerWidth <= 960; }
+
+  function bindHeader(hdr){
+    var hamb = hdr.querySelector('#hamb, button.hamb');
+    var nav  = hdr.querySelector('#nav, nav.nav');
+    if(!hamb || !nav) return false;
+    if(hamb._esc5gBound) return true;
+    hamb._esc5gBound = true;
+
+    function openMenu(){
+      nav.classList.add('open'); hamb.classList.add('open');
+      if(isMobile()){ nav.style.display='flex'; } else { nav.style.display=''; }
+      hamb.setAttribute('aria-expanded','true');
+    }
+    function closeMenu(){
+      nav.classList.remove('open'); hamb.classList.remove('open');
+      if(isMobile()){ nav.style.display='none'; } else { nav.style.display=''; }
+      hamb.setAttribute('aria-expanded','false');
+    }
+    function toggleMenu(e){ e && e.preventDefault(); (nav.classList.contains('open')?closeMenu:openMenu)(); }
+
+    ['click','touchstart'].forEach(function(ev){ hamb.addEventListener(ev, toggleMenu, {passive:false}); });
+    nav.addEventListener('click', function(ev){ if(ev.target.closest('a')) closeMenu(); });
+    document.addEventListener('keydown', function(ev){ if(ev.key==='Escape') closeMenu(); });
+
+    function syncOnResize(){
+      if(isMobile()){
+        if(!nav.classList.contains('open')) nav.style.display='none';
+      }else{
+        nav.style.display=''; nav.classList.remove('open'); hamb.classList.remove('open');
+      }
+    }
+    window.addEventListener('resize', syncOnResize);
+    syncOnResize();
+
+    hamb.setAttribute('aria-controls','nav'); hamb.setAttribute('aria-expanded','false');
+    return true;
+  }
+
+  ready(function(){
+    // Bind to all header.hdr instances
+    var headers = document.querySelectorAll('header.hdr');
+    if(headers.length){
+      headers.forEach(bindHeader);
+    }else{
+      // Fallback to document-level search (legacy markup)
+      bindHeader(document);
+    }
+    // Rebind if DOM swaps
+    var mo = new MutationObserver(function(){ 
+      document.querySelectorAll('header.hdr').forEach(bindHeader);
+    });
+    mo.observe(document.documentElement, {childList:true, subtree:true});
+  });
+})();
