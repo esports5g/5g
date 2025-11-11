@@ -307,3 +307,54 @@ document.addEventListener('DOMContentLoaded', function(){
     syncOnResize();
   });
 })();
+
+
+// === Ultra-Robust Binding for Header Menu ===
+(function(){
+  function ready(fn){ if(document.readyState!=='loading'){ fn(); } else { document.addEventListener('DOMContentLoaded', fn); } }
+  function bind(){ 
+    var hdr = document.querySelector('header.hdr') || document;
+    var hamb = hdr.querySelector('#hamb, button.hamb');
+    var nav  = hdr.querySelector('#nav, nav.nav');
+    if(!hamb || !nav) return false;
+    if(hamb._esc5gBound) return true;
+    hamb._esc5gBound = true;
+    // Reuse existing functions if present
+    var openMenu = window.__esc5gOpenMenu, closeMenu = window.__esc5gCloseMenu, toggleMenu = window.__esc5gToggleMenu;
+    if(!openMenu || !closeMenu || !toggleMenu){
+      function isMobile(){ return (window.matchMedia && window.matchMedia('(max-width: 960px)').matches) || window.innerWidth <= 960; }
+      openMenu = window.__esc5gOpenMenu = function(){
+        nav.classList.add('open'); hamb.classList.add('open');
+        if(isMobile()){ nav.style.display='flex'; } else { nav.style.display=''; }
+        hamb.setAttribute('aria-expanded','true');
+      };
+      closeMenu = window.__esc5gCloseMenu = function(){
+        nav.classList.remove('open'); hamb.classList.remove('open');
+        if(isMobile()){ nav.style.display='none'; } else { nav.style.display=''; }
+        hamb.setAttribute('aria-expanded','false');
+      };
+      toggleMenu = window.__esc5gToggleMenu = function(e){ e && e.preventDefault(); (nav.classList.contains('open')?closeMenu:openMenu)(); };
+      function syncOnResize(){
+        if(((window.matchMedia && window.matchMedia('(max-width: 960px)').matches) || window.innerWidth <= 960)){
+          if(!nav.classList.contains('open')) nav.style.display='none';
+        }else{
+          nav.style.display=''; nav.classList.remove('open'); hamb.classList.remove('open');
+        }
+      }
+      window.addEventListener('resize', syncOnResize);
+      syncOnResize();
+      document.addEventListener('keydown', function(ev){ if(ev.key==='Escape') closeMenu(); });
+      nav.addEventListener('click', function(ev){ var a = ev.target.closest('a'); if(a) closeMenu(); });
+    }
+    ['click','touchstart'].forEach(function(ev){ hamb.addEventListener(ev, toggleMenu, {passive:false}); });
+    hamb.setAttribute('aria-controls','nav');
+    hamb.setAttribute('aria-expanded','false');
+    return true;
+  }
+  ready(function(){
+    bind();
+    // Observe DOM swaps (if any) after language switch or partial reloads
+    var mo = new MutationObserver(function(){ bind(); });
+    mo.observe(document.documentElement, {childList:true, subtree:true});
+  });
+})();
