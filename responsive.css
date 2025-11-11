@@ -27,8 +27,8 @@ p,li{font-size:clamp(14px,2.8vw,18px)}
 @media (max-width:767px){
   .hero{
     display:flex!important;flex-direction:column!important;justify-content:flex-end!important;
-    background-size:cover!important;background-position:left 16% center!important;background-repeat:no-repeat!important;
-    min-height:86vh;margin:0!important;padding:0!important;
+    background-size:cover!important;background-position:center center!important;background-repeat:no-repeat!important;
+    min-height:100dvh!important;margin:0!important;padding:0!important;
   }
   .hero-inner{margin-top:auto!important;padding:clamp(8px,1.8vh,14px) 0 clamp(10px,2vh,16px) 0!important}
   .hero-cta{position:static!important;transform:none!important;width:min(92vw,620px);margin:clamp(8px,2.4vw,14px) auto 0 auto!important;place-items:center;text-align:center}
@@ -42,7 +42,7 @@ p,li{font-size:clamp(14px,2.8vw,18px)}
 @media (max-width:767px) and (min-width:430px) and (max-width:480px) and (min-height:900px){
   .hero{
     background-position:left 0% center!important; /* anchor fully left to reveal all background letters */
-    min-height:92vh!important;
+    min-height:100dvh!important;
   }
   .hero-inner{ padding-bottom: clamp(12px, 2.6vh, 22px) !important; }
 }
