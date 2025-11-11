@@ -16,7 +16,19 @@
 <link href="./assets/icons/android-chrome-192x192.png" rel="icon" sizes="192x192" type="image/png"/>
 <meta content="#0b1020" name="theme-color"/>
 <link href="assets/site.css" rel="stylesheet"/>
-</link><link rel="stylesheet" href="responsive.css"></head><body>
+</link><link rel="stylesheet" href="responsive.css">
+<style>
+@media (max-width: 767px){
+  .hero.mp{ background: url('../assets/img/stations_angle_mobile_9x16.jpg') center/contain no-repeat !important; }
+}
+@media (max-width: 767px) and (min-width: 0px){
+  /* keep a subtle underlay to avoid perceived borders */
+  .hero.mp::before{ content:""; position:absolute; inset:0; background: url('../assets/img/stations_angle_mobile_9x16.jpg') center/cover no-repeat; filter: blur(10px); opacity: .35; }
+  .hero-inner{ position: relative; z-index: 1; }
+}
+</style>
+
+</head><body>
 <header class="hdr">
 <div class="wrap row">
 <a class="brand" href="index.html">
