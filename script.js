@@ -10,6 +10,8 @@ document.addEventListener('DOMContentLoaded', () => {
 document.addEventListener('DOMContentLoaded', function(){
   const gridImgs = Array.from(document.querySelectorAll('.img-grid img'));
   if(!gridImgs.length) return;
+  // Gallery images should not be clickable to enlarge (2025-11-11)
+  return;
 
   let lb = document.getElementById('lightbox');
   if(!lb){

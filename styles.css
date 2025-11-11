@@ -46,7 +46,7 @@ img{max-width:100%;height:auto;display:block}
 /* Gallery 3×2 desktop — 2col tablet — 1col mobile */
 .img-grid{display:grid;grid-template-columns:repeat(3,minmax(220px,1fr));gap:20px}
 .img-grid figure{margin:0;border-radius:14px;overflow:hidden;aspect-ratio:4/3;background:#0b1020;border:1px solid rgba(120,160,255,.25);box-shadow:0 8px 24px rgba(0,0,0,.35)}
-.img-grid img{width:100%;height:100%;object-fit:cover;cursor:zoom-in;transition:transform .3s ease}
+.img-grid img{cursor:default; width:100%;height:100%;object-fit:cover;transition:transform .3s ease}
 .img-grid img:hover{transform:scale(1.04)}
 
 /* Price table */
