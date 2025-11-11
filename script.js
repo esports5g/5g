@@ -99,3 +99,16 @@ document.addEventListener('DOMContentLoaded', () => {
     ['mouseleave','touchend','blur'].forEach(ev => el.addEventListener(ev, start, {passive:true}));
   });
 });
+
+
+/* === Sticky header shadow on scroll (2025-11-11) === */
+document.addEventListener('DOMContentLoaded', function(){
+  var hdr = document.querySelector('.hdr');
+  if(!hdr) return;
+  function upd(){
+    if(window.scrollY > 0){ hdr.classList.add('is-scrolled'); }
+    else{ hdr.classList.remove('is-scrolled'); }
+  }
+  upd();
+  window.addEventListener('scroll', upd, { passive: true });
+});

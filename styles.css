@@ -234,3 +234,74 @@ img{max-width:100%;height:auto;display:block}
   .hdr .nav a .jp{ font-size: .8rem; }
   .hdr .nav a .en{ font-size: .88rem; }
 }
+
+
+/* === Mobile sticky header + gradients + pinned EN (2025-11-11) === */
+@media (max-width: 960px){
+  /* Sticky header */
+  .hdr{
+    position: sticky;
+    top: 0;
+    z-index: 999;
+    transition: box-shadow .25s ease;
+    box-shadow: none;
+    background: linear-gradient(180deg, rgba(6,8,16,0.98), rgba(6,8,16,0.95));
+    backdrop-filter: saturate(140%) blur(6px);
+  }
+  /* Shadow appears when scrolled (class toggled via tiny JS below) */
+  .hdr.is-scrolled{
+    box-shadow: 0 8px 24px rgba(0,0,0,.36);
+  }
+
+  /* Scrollable segmented nav with fade edges */
+  .hdr .nav{
+    position: relative !important;
+    overflow-x: auto;
+    white-space: nowrap;
+    flex-wrap: nowrap;
+    gap: 10px;
+    padding: 8px 56px 8px 8px; /* right padding keeps content clear of pinned EN */
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+  .hdr .nav::-webkit-scrollbar{ display:none; }
+
+  /* Gradient fades at edges to hint scroll */
+  .hdr .nav::before,
+  .hdr .nav::after{
+    content: "";
+    position: sticky;
+    display: block;
+    width: 24px;
+    height: 36px;
+    top: 0;
+    z-index: 1;
+    pointer-events: none;
+  }
+  .hdr .nav::before{
+    left: 0;
+    background: linear-gradient(90deg, rgba(6,8,16,1), rgba(6,8,16,0));
+  }
+  .hdr .nav::after{
+    float: right;
+    right: 0;
+    background: linear-gradient(270deg, rgba(6,8,16,1), rgba(6,8,16,0));
+  }
+
+  /* Pinned language switch at far right */
+  #lang-switch{
+    position: sticky;
+    right: 0;
+    z-index: 2;
+    margin-left: 6px;
+    padding: 8px 12px;
+    border-radius: 999px;
+    background: rgba(255,255,255,0.1);
+    backdrop-filter: blur(4px);
+    display: inline-block;
+  }
+}
+
+@media (max-width: 560px){
+  #lang-switch{ padding: 6px 10px; }
+}
