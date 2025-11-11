@@ -305,3 +305,105 @@ img{max-width:100%;height:auto;display:block}
 @media (max-width: 560px){
   #lang-switch{ padding: 6px 10px; }
 }
+
+
+/* === Mobile horizontal nav + compressed sticky animation (2025-11-11) === */
+@media (max-width: 960px){
+  /* Layout: brand | nav (scrollable row) | EN (sticky at right) */
+  .hdr{
+    /* vars for compact animation */
+    --hdrH: 56px;
+    --logoH: 26px;
+    --pillY: 8px;   /* vertical padding of pills */
+    --pillX: 12px;  /* horizontal padding of pills */
+    position: sticky;
+    top: 0;
+    z-index: 999;
+    background: linear-gradient(180deg, rgba(6,8,16,0.98), rgba(6,8,16,0.95));
+    backdrop-filter: saturate(140%) blur(6px);
+    transition: box-shadow .25s ease, background .25s ease;
+    box-shadow: none;
+  }
+  .hdr .wrap{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    min-height: var(--hdrH);
+    transition: min-height .2s ease;
+  }
+  .hdr .brand-logo{
+    height: var(--logoH);
+    transition: height .2s ease;
+  }
+
+  /* Scroll row nav */
+  .hdr .nav{
+    display: flex !important;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    white-space: nowrap;
+    gap: 10px;
+    padding: 0 56px 0 0; /* reserve space for sticky EN on the right */
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+  .hdr .nav::-webkit-scrollbar{ display:none; }
+  .hdr .nav a{
+    display: inline-block;
+    flex: 0 0 auto;
+    padding: var(--pillY) var(--pillX);
+    border-radius: 999px;
+    background: rgba(255,255,255,0.08);
+    transition: padding .2s ease, transform .2s ease, background .2s ease;
+  }
+  .hdr .nav a:active{ transform: translateY(1px); }
+
+  /* Edge fades */
+  .hdr .nav::before,
+  .hdr .nav::after{
+    content: "";
+    position: sticky;
+    top: 0;
+    width: 20px;
+    height: var(--hdrH);
+    pointer-events: none;
+    z-index: 1;
+  }
+  .hdr .nav::before{
+    left: 0;
+    background: linear-gradient(90deg, rgba(6,8,16,1), rgba(6,8,16,0));
+  }
+  .hdr .nav::after{
+    float: right;
+    right: 0;
+    background: linear-gradient(270deg, rgba(6,8,16,1), rgba(6,8,16,0));
+  }
+
+  /* Pinned EN at far right */
+  #lang-switch{
+    position: sticky;
+    right: 0;
+    z-index: 2;
+    margin-left: 6px;
+    padding: var(--pillY) var(--pillX);
+    border-radius: 999px;
+    background: rgba(255,255,255,0.12);
+    backdrop-filter: blur(4px);
+    display: inline-block;
+  }
+
+  /* Compact state when scrolled */
+  .hdr.is-scrolled{
+    --hdrH: 48px;
+    --logoH: 22px;
+    --pillY: 6px;
+    --pillX: 10px;
+    box-shadow: 0 8px 24px rgba(0,0,0,.36);
+  }
+}
+
+@media (max-width: 560px){
+  .hdr{ --hdrH: 52px; }
+  .hdr.is-scrolled{ --hdrH: 44px; }
+}
