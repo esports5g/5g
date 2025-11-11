@@ -453,3 +453,55 @@ img{max-width:100%;height:auto;display:block}
     font-size: .9rem;
   }
 }
+
+
+/* === Mobile hamburger dropdown (2025-11-11 v6) === */
+@media (max-width: 960px){
+  /* show hamburger */
+  .hamb{ 
+    display: flex !important;
+    background: transparent; border: 0; width: 40px; height: 40px; padding: 0;
+    gap: 5px; flex-direction: column; justify-content: center;
+  }
+  .hamb span{ display:block; height:2px; background:#cfe6ff; border-radius:2px; }
+
+  /* reset previous segmented overrides */
+  .hdr .nav{
+    position: absolute !important;
+    left: 0; right: 0; top: 100%;
+    display: none !important;
+    flex-direction: column !important;
+    gap: 12px;
+    padding: 12px 16px;
+    background: rgba(6,8,16,0.98);
+    backdrop-filter: saturate(140%) blur(8px);
+    border-bottom-left-radius: 16px;
+    border-bottom-right-radius: 16px;
+    box-shadow: 0 16px 36px rgba(0,0,0,.35);
+    overflow: visible;
+    white-space: normal;
+  }
+  .hdr .nav.open{ display: flex !important; }
+
+  /* dropdown items */
+  .hdr .nav a{
+    display: block !important;
+    flex: none !important;
+    padding: 10px 12px !important;
+    border-radius: 12px !important;
+    background: transparent !important;
+  }
+  .hdr .nav a:hover{ background: rgba(255,255,255,.06) !important; }
+
+  /* language switch appears as a normal item inside dropdown */
+  #lang-switch{
+    position: static !important;
+    margin-left: 0 !important;
+    background: rgba(255,255,255,.1) !important;
+    border-radius: 12px !important;
+  }
+
+  /* header remains fixed at top from v5 */
+  .hdr{ position: fixed; top:0; left:0; right:0; z-index: 1000; }
+  body{ padding-top: var(--hdrHpx, 56px); }
+}

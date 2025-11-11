@@ -131,3 +131,34 @@ document.addEventListener('DOMContentLoaded', function(){
   window.addEventListener('resize', requestSet, { passive: true });
   window.addEventListener('scroll', requestSet, { passive: true });
 });
+
+
+/* === Hamburger dropdown behaviors (2025-11-11 v6) === */
+document.addEventListener('DOMContentLoaded', function(){
+  var hamb = document.getElementById('hamb');
+  var nav  = document.getElementById('nav');
+  if(!hamb || !nav) return;
+
+  function closeNavDropdown(){ nav.classList.remove('open'); }
+  function isInside(el, parent){ while(el){ if(el===parent) return true; el = el.parentElement; } return false; }
+
+  // Close on click outside
+  document.addEventListener('click', function(e){
+    if(nav.classList.contains('open')){
+      if(e.target===hamb || isInside(e.target, hamb)) return;
+      if(isInside(e.target, nav)) return;
+      closeNavDropdown();
+    }
+  });
+
+  // Close on ESC
+  document.addEventListener('keydown', function(e){
+    if(e.key === 'Escape'){ closeNavDropdown(); }
+  });
+
+  // Close after selecting a link
+  nav.addEventListener('click', function(e){
+    var a = e.target.closest('a');
+    if(a){ closeNavDropdown(); }
+  });
+});
