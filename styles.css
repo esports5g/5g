@@ -505,3 +505,47 @@ img{max-width:100%;height:auto;display:block}
   .hdr{ position: fixed; top:0; left:0; right:0; z-index: 1000; }
   body{ padding-top: var(--hdrHpx, 56px); }
 }
+
+
+/* === Esports-themed hamburger + solid dropdown bg (2025-11-11 v7) === */
+@media (max-width: 960px){
+  /* Color tokens (scoped to mobile to avoid global impact) */
+  :root{
+    --e-hamburger: #00e5ff;   /* neon cyan */
+    --e-accent:    #ff3cf7;   /* magenta accent */
+    --e-bg-solid:  #0b1020;   /* deep navy */
+  }
+
+  /* Make hamburger icon bolder + glow */
+  .hamb{ width: 44px; height: 44px; }
+  .hamb span{
+    height: 3px !important;
+    background: var(--e-hamburger) !important;
+    box-shadow: 0 0 6px var(--e-hamburger), 0 0 14px var(--e-hamburger);
+  }
+
+  /* Solid dropdown background (no transparency) with subtle neon border */
+  .hdr .nav{
+    background: var(--e-bg-solid) !important;
+    backdrop-filter: none !important;
+    border: 1px solid rgba(0,229,255,.22);
+    box-shadow:
+      0 16px 38px rgba(0,0,0,.45),
+      0 0 0 1px rgba(0,229,255,.10) inset;
+  }
+
+  /* Hover/active feedback tuned to esports palette */
+  .hdr .nav a:hover{
+    background: rgba(0,229,255,.10) !important;
+  }
+  .hdr .nav a:active{
+    background: rgba(255,60,247,.12) !important;
+    transform: translateY(1px);
+  }
+
+  /* Language switch pill tone-up inside dropdown */
+  #lang-switch{
+    background: rgba(0,229,255,.12) !important;
+    border: 1px solid rgba(0,229,255,.25);
+  }
+}
