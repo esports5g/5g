@@ -586,3 +586,89 @@ img{max-width:100%;height:auto;display:block}
     border: 1px solid rgba(0,229,255,.25);
   }
 }
+
+
+/* === v9: Force dropdown above hero + scroll lock (2025-11-11) === */
+@media (max-width: 960px){
+  /* Ensure hero never over the header/menu on mobile */
+  .hero{ position: relative; z-index: 0; }
+  .hero::before{ position: absolute; z-index: 0; }
+
+  /* Elevate header and dropdown stacking order */
+  .hdr{ z-index: 7000 !important; }
+  .hdr .nav{ z-index: 8000 !important; }
+
+  /* Optional dark page backdrop when open (pseudo overlay) */
+  body.menu-open::before{
+    content: "";
+    position: fixed;
+    left: 0; right: 0; top: var(--hdrHpx, 56px); bottom: 0;
+    background: rgba(0,0,0,.45);
+    z-index: 6500;
+  }
+
+  /* Scroll lock */
+  body.menu-open{
+    overflow: hidden;
+    touch-action: none;
+  }
+}
+
+
+/* === v10: Hamburger morphs to X + strongest z-index for dropdown === */
+@media (max-width: 960px){
+  /* Make sure header & dropdown are absolutely on top */
+  .hdr{ z-index: 100000 !important; }
+  .hdr .nav{ z-index: 110000 !important; }
+
+  /* Hamburger to X animation */
+  .hamb{ position: relative; width: 44px; height: 44px; }
+  .hamb span{
+    position: absolute;
+    left: 8px; right: 8px;
+    height: 3px;
+    border-radius: 2px;
+    background: var(--e-hamburger, #00e5ff);
+    transition: transform .25s ease, opacity .2s ease, top .25s ease, bottom .25s ease, box-shadow .25s ease;
+    box-shadow: 0 0 6px var(--e-hamburger, #00e5ff), 0 0 14px var(--e-hamburger, #00e5ff);
+  }
+  .hamb span:nth-child(1){ top: 12px; }
+  .hamb span:nth-child(2){ top: 20px; }
+  .hamb span:nth-child(3){ top: 28px; }
+  .hamb.open span:nth-child(1){
+    top: 20px;
+    transform: rotate(45deg);
+  }
+  .hamb.open span:nth-child(2){
+    opacity: 0;
+    transform: scaleX(0.5);
+  }
+  .hamb.open span:nth-child(3){
+    top: 20px;
+    transform: rotate(-45deg);
+  }
+
+  /* Fullscreen dropdown panel (cover hero) */
+  .hdr .nav{
+    position: fixed !important;
+    left: 0; right: 0;
+    top: var(--hdrHpx, 56px);
+    bottom: 0;
+    display: none !important;
+    background: #040814 !important; /* a bit darker than v8 */
+    box-shadow: 0 18px 40px rgba(0,0,0,.6);
+    border: none !important;
+    backdrop-filter: none !important;
+    overflow-y: auto;
+    padding: 14px 16px 28px;
+    gap: 14px;
+  }
+  .hdr .nav.open{ display: flex !important; }
+
+  /* Ensure hero and lightbox are below menu in stacking */
+  .hero{ position: relative; z-index: 0; }
+  #lightbox{ z-index: 50000; } /* still below dropdown */
+
+  /* When menu is open, prevent scrolling */
+  body.menu-open{ overflow: hidden; touch-action: none; }
+}

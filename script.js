@@ -3,7 +3,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const hamb = document.getElementById('hamb');
   const nav  = document.getElementById('nav');
   if(hamb && nav){
-    hamb.addEventListener('click', ()=> nav.classList.toggle('open'));
+    hamb.addEventListener('click', ()=> { nav.classList.toggle('open'); hamb.classList.toggle('open'); });
   }
 });
 
@@ -161,4 +161,27 @@ document.addEventListener('DOMContentLoaded', function(){
     var a = e.target.closest('a');
     if(a){ closeNavDropdown(); }
   });
+});
+
+
+/* === v9: lock body scroll and backdrop when menu open === */
+document.addEventListener('DOMContentLoaded', function(){
+  var hamb = document.getElementById('hamb');
+  var nav  = document.getElementById('nav');
+  if(!hamb || !nav) return;
+
+  function setBodyLock(){
+    if(nav.classList.contains('open')){
+      document.body.classList.add('menu-open');
+    }else{
+      document.body.classList.remove('menu-open');
+    }
+  }
+
+  // Hook into existing click that toggles .open
+  hamb.addEventListener('click', setBodyLock);
+
+  // Also run when closing via other handlers (outside click, ESC, link click)
+  document.addEventListener('click', function(){ setTimeout(setBodyLock, 0); }, { passive: true });
+  document.addEventListener('keydown', function(e){ if(e.key==='Escape') setTimeout(setBodyLock, 0); }, { passive: true });
 });
