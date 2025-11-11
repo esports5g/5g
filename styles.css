@@ -211,31 +211,26 @@ img{max-width:100%;height:auto;display:block}
 }
 
 
-/* === Override: Mobile nav without hamburger (2025-11-11) === */
+/* === Mobile nav overlap fix (2025-11-11) === */
 @media (max-width: 960px){
-  /* show nav inline as a scrollable segmented bar */
+  .hdr .wrap{ align-items: center; }
+  .hdr .brand{ flex: 0 0 auto; }
   .hdr .nav{
-    position: static !important;
-    inset: auto !important;
-    background: transparent !important;
-    display: flex !important;
-    flex-direction: row !important;
-    align-items: center;
-    gap: 10px;
-    padding: 8px 0;
+    display:flex !important;
+    flex-wrap: nowrap;
     overflow-x: auto;
     white-space: nowrap;
+    gap: 10px;
     -webkit-overflow-scrolling: touch;
-    box-shadow: none;
   }
   .hdr .nav a{
-    display: inline-block;
-    padding: 8px 12px;
-    border-radius: 999px;
-    background: rgba(255,255,255,0.06);
-    text-decoration: none;
+    flex: 0 0 auto;        /* do not shrink in iOS Safari */
+    margin: 0;             /* avoid accidental negative margins from base */
+    box-sizing: border-box;
   }
-  .hdr .nav a:active{ transform: translateY(1px); }
-  /* hide the hamburger entirely */
-  .hamb{ display: none !important; }
+}
+@media (max-width: 560px){
+  .hdr .nav a{ padding: 6px 10px; }
+  .hdr .nav a .jp{ font-size: .8rem; }
+  .hdr .nav a .en{ font-size: .88rem; }
 }
