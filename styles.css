@@ -209,3 +209,33 @@ img{max-width:100%;height:auto;display:block}
 .hero-cta .cta{
   justify-self:center;
 }
+
+
+/* === Override: Mobile nav without hamburger (2025-11-11) === */
+@media (max-width: 960px){
+  /* show nav inline as a scrollable segmented bar */
+  .hdr .nav{
+    position: static !important;
+    inset: auto !important;
+    background: transparent !important;
+    display: flex !important;
+    flex-direction: row !important;
+    align-items: center;
+    gap: 10px;
+    padding: 8px 0;
+    overflow-x: auto;
+    white-space: nowrap;
+    -webkit-overflow-scrolling: touch;
+    box-shadow: none;
+  }
+  .hdr .nav a{
+    display: inline-block;
+    padding: 8px 12px;
+    border-radius: 999px;
+    background: rgba(255,255,255,0.06);
+    text-decoration: none;
+  }
+  .hdr .nav a:active{ transform: translateY(1px); }
+  /* hide the hamburger entirely */
+  .hamb{ display: none !important; }
+}
