@@ -112,3 +112,22 @@ document.addEventListener('DOMContentLoaded', function(){
   upd();
   window.addEventListener('scroll', upd, { passive: true });
 });
+
+
+/* === Sync header height variable for fixed header (2025-11-11) === */
+document.addEventListener('DOMContentLoaded', function(){
+  var hdr = document.querySelector('.hdr');
+  if(!hdr) return;
+  var ticking = false;
+  function setHdrVar(){
+    document.documentElement.style.setProperty('--hdrHpx', hdr.offsetHeight + 'px');
+    ticking = false;
+  }
+  function requestSet(){
+    if(!ticking){ requestAnimationFrame(setHdrVar); ticking = true; }
+  }
+  // update on load, scroll (to catch compressed state), and resize
+  requestSet();
+  window.addEventListener('resize', requestSet, { passive: true });
+  window.addEventListener('scroll', requestSet, { passive: true });
+});
