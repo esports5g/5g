@@ -34,6 +34,15 @@ p,li{font-size:clamp(14px,2.8vw,18px)}
   .hero-cta{position:static!important;transform:none!important;width:min(92vw,620px);margin:clamp(8px,2.4vw,14px) auto 0 auto!important;place-items:center;text-align:center}
   :where(.hero)+*{margin-top:0!important}
   .hero+section,.hero+div,.hero+main{padding-top:0!important;margin-top:0!important}
-  /* Precise zeroing for the NEWS containers used in index.html */
   .news-section,#news-cards{padding-top:0!important;margin-top:0!important}
+}
+
+/* === Device-specific fine-tune: large iPhones (e.g., iPhone 16 Pro Max) === */
+/* Approx CSS viewport for 16PM: width 430–480px, height ≥ 900px */
+@media (max-width:767px) and (min-width:430px) and (max-width:480px) and (min-height:900px){
+  .hero{
+    background-position:left 0% center!important; /* anchor fully left to reveal all background letters */
+    min-height:92vh!important;
+  }
+  .hero-inner{ padding-bottom: clamp(12px, 2.6vh, 22px) !important; }
 }
