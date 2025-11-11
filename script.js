@@ -185,3 +185,47 @@ document.addEventListener('DOMContentLoaded', function(){
   document.addEventListener('click', function(){ setTimeout(setBodyLock, 0); }, { passive: true });
   document.addEventListener('keydown', function(e){ if(e.key==='Escape') setTimeout(setBodyLock, 0); }, { passive: true });
 });
+
+
+/* === v11: Robust open/close for dropdown === */
+document.addEventListener('DOMContentLoaded', function(){
+  var hamb = document.getElementById('hamb');
+  var nav  = document.getElementById('nav');
+  if(!hamb || !nav) return;
+
+  function syncBody(){
+    if(nav.classList.contains('open')) document.body.classList.add('menu-open');
+    else document.body.classList.remove('menu-open');
+  }
+  function toggleMenuOpen(force){
+    var willOpen = (typeof force === 'boolean') ? force : !nav.classList.contains('open');
+    nav.classList.toggle('open', willOpen);
+    hamb.classList.toggle('open', willOpen);
+    hamb.setAttribute('aria-expanded', willOpen ? 'true' : 'false');
+    syncBody();
+  }
+
+  hamb.addEventListener('click', function(e){
+    e.stopPropagation();  // prevent outside-click handler from firing immediately
+    toggleMenuOpen();
+  });
+
+  // Close on clicking outside nav/hamb
+  document.addEventListener('click', function(e){
+    if(!nav.classList.contains('open')) return;
+    if(e.target===hamb || hamb.contains(e.target)) return;
+    if(nav.contains(e.target)) return;
+    toggleMenuOpen(false);
+  }, { passive: true });
+
+  // Close on ESC
+  document.addEventListener('keydown', function(e){
+    if(e.key === 'Escape') toggleMenuOpen(false);
+  });
+
+  // Close after selecting a link
+  nav.addEventListener('click', function(e){
+    var a = e.target.closest('a');
+    if(a){ toggleMenuOpen(false); }
+  });
+});
