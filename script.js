@@ -229,3 +229,81 @@ document.addEventListener('DOMContentLoaded', function(){
     if(a){ toggleMenuOpen(false); }
   });
 });
+
+
+// === Robust Mobile Menu Controller (id:nav / id:hamb) ===
+(function(){
+  function ready(fn){ if(document.readyState!=='loading'){ fn(); } else { document.addEventListener('DOMContentLoaded', fn); } }
+  ready(function(){
+    var hamb = document.getElementById('hamb');
+    var nav  = document.getElementById('nav');
+    if(!hamb || !nav) return;
+
+    function isMobile(){
+      // Use same breakpoint as CSS (<=960px)
+      return (window.matchMedia && window.matchMedia('(max-width: 960px)').matches) || window.innerWidth <= 960;
+    }
+
+    function openMenu(){
+      nav.classList.add('open');
+      hamb.classList.add('open');
+      // Fallback to inline style to beat any conflicting CSS
+      if(isMobile()){
+        nav.style.display = 'flex';
+      }else{
+        nav.style.display = ''; // desktop layout uses CSS
+      }
+      hamb.setAttribute('aria-expanded','true');
+    }
+    function closeMenu(){
+      nav.classList.remove('open');
+      hamb.classList.remove('open');
+      if(isMobile()){
+        nav.style.display = 'none';
+      }else{
+        nav.style.display = '';
+      }
+      hamb.setAttribute('aria-expanded','false');
+    }
+    function toggleMenu(e){
+      e && e.preventDefault();
+      if(nav.classList.contains('open')) closeMenu(); else openMenu();
+    }
+
+    // Initialize collapsed on mobile to avoid "stuck open" states
+    function syncOnResize(){
+      if(isMobile()){
+        // default collapsed
+        if(!nav.classList.contains('open')) nav.style.display = 'none';
+      }else{
+        // desktop uses normal inline nav
+        nav.style.display = '';
+        nav.classList.remove('open');
+        hamb.classList.remove('open');
+      }
+    }
+
+    hamb.setAttribute('aria-controls','nav');
+    hamb.setAttribute('aria-expanded','false');
+
+    // Handle click & touch
+    ['click','touchstart'].forEach(function(ev){
+      hamb.addEventListener(ev, toggleMenu, {passive:false});
+    });
+
+    // Close when a nav link is tapped
+    nav.addEventListener('click', function(ev){
+      var t = ev.target;
+      if(t && (t.tagName === 'A' || t.closest('a'))) closeMenu();
+    });
+
+    // Close on Escape
+    document.addEventListener('keydown', function(ev){
+      if(ev.key === 'Escape') closeMenu();
+    });
+
+    // Keep states consistent
+    window.addEventListener('resize', syncOnResize);
+    syncOnResize();
+  });
+})();
