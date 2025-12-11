@@ -14,9 +14,9 @@ img{max-width:100%;height:auto;display:block}
 .hdr .brand-logo{height:28px;width:auto;display:block}
 .brandtxt{opacity:.9;letter-spacing:.02em}
 .nav{display:flex;gap:18px}
-.nav a{display:inline-block;color:#fff;text-decoration:none;opacity:.9;transition:color .25s}
-.nav a .en{display:block;font-size:.9rem;font-weight:800}
-.nav a .jp{display:block;font-size:.72rem;opacity:.85}
+.nav a{display:inline-block;color:#fff;text-decoration:none;opacity:.9;transition:color .25s;font-size:1.05rem}
+.nav a .en{display:block;font-size:1.1rem;font-weight:800}
+.nav a .jp{display:block;font-size:1rem;opacity:.95}
 .nav a:hover{color:var(--neon);opacity:1}
 .hamb{display:none;background:transparent;border:0;width:40px;height:40px;padding:0;gap:5px;flex-direction:column;justify-content:center}
 .hamb span{display:block;height:2px;background:#cfe6ff;border-radius:2px}
@@ -423,6 +423,66 @@ img{max-width:100%;height:auto;display:block}
   }
 }
 
+
+
+/* === Footer (desktop & global) === */
+.site-footer{
+  margin-top: 40px;
+  padding: 18px 24px 30px;
+  border-top: 1px solid #555555;
+  font-size: 0.8rem;
+  color: rgba(255,255,255,.82);
+}
+
+/* footer layout desktop */
+.site-footer .footer-wrap{
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.site-footer .footer-policies{
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: center;
+  gap: 24px;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+.site-footer .footer-policies li{
+  display: inline-flex;
+  align-items: center;
+  white-space: nowrap;
+  margin: 0;
+  padding: 0;
+}
+
+/* copyright a bit smaller */
+.site-footer .copyright-inline{
+  font-size: 0.75rem;
+  opacity: 0.85;
+}
+
+
+.site-footer .footer-policies a,
+.site-footer .copyright-inline{
+  line-height: 1.4;
+  display: inline-flex;
+  align-items: center;
+}
+
+/* footer links smaller than body text */
+.site-footer .footer-policies a{
+  font-size: 0.8rem;
+}
+
+/* make sure any <hr> inside footer is hidden (we only use border-top) */
+.site-footer hr{
+  display: none;
+}
+
+/* === Footer mobile-friendly layout (2025-11-11) === */
 /* === Footer mobile-friendly layout (2025-11-11) === */
 @media (max-width: 960px){
   .site-footer{
