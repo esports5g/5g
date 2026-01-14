@@ -1,48 +1,64 @@
-/* === Responsive Base (by ChatGPT) === */
+/* Utilities + mobile safety */
 *,*::before,*::after{box-sizing:border-box}
-html,body{margin:0;padding:0}
-html{-webkit-text-size-adjust:100%;font-size:16px}
-body{font-family:system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,"PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;line-height:1.5;padding:env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left)}
-img,svg,video,canvas{max-width:100%;height:auto;display:block}
-.fit-cover{width:100%;height:100%;object-fit:cover;object-position:center}
-.fit-contain{width:100%;height:100%;object-fit:contain}
-.bg-cover{background-size:cover;background-position:center;background-repeat:no-repeat}
-.bg-contain{background-size:contain;background-position:center;background-repeat:no-repeat}
-.container{width:min(100% - 6vw,1200px);margin-inline:auto}
-.grid{display:grid;gap:clamp(12px,2vw,24px)}
-button,a,.tap{min-height:44px;min-width:44px}
-.table-wrap,.scroll-x{overflow-x:auto;-webkit-overflow-scrolling:touch}
-h1{font-size:clamp(22px,4.5vw,36px)}
-h2{font-size:clamp(18px,3.5vw,28px)}
-p,li{font-size:clamp(14px,2.8vw,18px)}
-.card{display:flex;flex-direction:column;min-height:0}
-.ratio-16x9{aspect-ratio:16/9}
-.ratio-4x3{aspect-ratio:4/3}
-.ratio-1x1{aspect-ratio:1/1}
-@media (min-width:480px){.grid.cols-2-sm{grid-template-columns:repeat(2,1fr)}}
-@media (min-width:768px){.grid.cols-2{grid-template-columns:repeat(2,1fr)}.grid.cols-3{grid-template-columns:repeat(3,1fr)}}
-@media (min-width:1024px){.grid.cols-4{grid-template-columns:repeat(4,1fr)}}
-
-/* === Mobile hero: bottom-align headline & CTA to sit flush above NEWS (desktop untouched) === */
-@media (max-width:767px){
-  .hero{
-    display:flex!important;flex-direction:column!important;justify-content:flex-end!important;
-    background-size:cover!important;background-position:center center!important;background-repeat:no-repeat!important;
-    min-height:100dvh!important;margin:0!important;padding:0!important;
-  }
-  .hero-inner{margin-top:auto!important;padding:clamp(8px,1.8vh,14px) 0 clamp(10px,2vh,16px) 0!important}
-  .hero-cta{position:static!important;transform:none!important;width:min(92vw,620px);margin:clamp(8px,2.4vw,14px) auto 0 auto!important;place-items:center;text-align:center}
-  :where(.hero)+*{margin-top:0!important}
-  .hero+section,.hero+div,.hero+main{padding-top:0!important;margin-top:0!important}
-  .news-section,#news-cards{padding-top:0!important;margin-top:0!important}
+:where(button,a){-webkit-tap-highlight-color: transparent}
+.container{width:min(1200px, calc(100% - 32px)); margin-inline:auto}
+.scroll-x{overflow-x:auto;-webkit-overflow-scrolling:touch}
+@media (prefers-reduced-motion: reduce){
+  *{scroll-behavior:auto !important; transition:none !important; animation:none !important;}
 }
 
-/* === Device-specific fine-tune: large iPhones (e.g., iPhone 16 Pro Max) === */
-/* Approx CSS viewport for 16PM: width 430–480px, height ≥ 900px */
-@media (max-width:767px) and (min-width:430px) and (max-width:480px) and (min-height:900px){
-  .hero{
-    background-position:left 0% center!important; /* anchor fully left to reveal all background letters */
-    min-height:100dvh!important;
-  }
-  .hero-inner{ padding-bottom: clamp(12px, 2.6vh, 22px) !important; }
+/* === Mobile-first refinements (Neon Glass) === */
+
+/* Prevent accidental horizontal scroll on small screens */
+html,body{overflow-x:hidden}
+
+/* Mobile nav: full-height sheet + scrollable */
+@media (max-width: 960px){
+  nav#nav.nav{inset: 60px 14px 14px 14px !important; max-height: calc(100vh - 74px); overflow:auto; padding-bottom: calc(14px + env(safe-area-inset-bottom));}
+  nav#nav.nav a{padding: 12px 14px;}
+}
+
+/* Compact spacing + better tap targets */
+@media (max-width: 640px){
+  body > .wrap{padding: 26px 0}
+  .hdr .wrap{padding: 8px 0}
+  .brand-logo{height:24px}
+  .brandtxt{font-size: 14px}
+
+  .panel{padding: 34px 0}
+  .row{gap:10px}
+
+  .hero{min-height: 72vh}
+  .hero-inner{padding: 22px 0}
+  .lead{line-height: 1.75}
+  .cta .btn{width:100%}
+
+  .card{padding: 16px}
+
+  /* Tables: readable on small screens */
+  .price-table{display:block; width:100%; overflow-x:auto; -webkit-overflow-scrolling:touch; border-radius: 14px}
+  .price-table th,.price-table td{padding: 10px 8px; font-size: 13px}
+}
+
+/* Footer: wrap properly + smaller typography */
+.site-footer{font-size: .875rem}
+.site-footer.pro{font-size: .875rem}
+.site-footer.pro .footer-wrap{
+  white-space: normal !important;
+  overflow-x: visible !important;
+  padding-bottom: calc(10px + env(safe-area-inset-bottom)) !important;
+}
+.site-footer.pro .footer-inline,
+.site-footer.pro .footer-policies{
+  flex-wrap: wrap !important;
+  white-space: normal !important;
+}
+.site-footer.pro .footer-inline li,
+.site-footer.pro .footer-policies li{
+  white-space: normal !important;
+}
+
+@media (max-width: 640px){
+  .site-footer.pro .footer-wrap{padding: 14px 0 !important; text-align:center !important;}
+  .site-footer.pro .footer-inline{justify-content:center !important; gap: 14px !important;}
 }

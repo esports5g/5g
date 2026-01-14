@@ -1,33 +1,16 @@
-/* site.css created */
-
-
-/* === Global Site Footer (pro) — JP only, match main colors === */
-.site-footer.pro .footer-wrap{
-  display: flex !important;
-  align-items: flex-start;
-  justify-content: space-between !important;
-  gap: 64px;
-  padding: 40px 16px;
-  text-align: left;
-  width: min(1200px, calc(100% - 64px));
-  margin: 0 auto;
-}
-.site-footer.pro .f-col{ min-width: 260px; }
-.site-footer.pro .f-col.company{ order: 1 !important; }
-.site-footer.pro .f-col.policies{ order: 2 !important; }
-
-/* follow page color scheme */
-.site-footer.pro{ background: transparent; color: inherit; border-top: 1px solid rgba(255,255,255,0.08); margin-top: 48px; }
-.site-footer.pro a{ color: inherit; text-decoration: underline; text-underline-offset: 2px; }
-.site-footer.pro .footer-copy{ border-top: 1px solid rgba(255,255,255,0.08); padding: 14px 16px 20px; width: min(1200px, calc(100% - 64px)); margin: 0 auto; }
-
-/* No bullets */
-.site-footer.pro .f-links, .site-footer.pro .f-list{ list-style: none !important; padding-left: 0 !important; margin-left: 0 !important; }
-.site-footer.pro .f-links li, .site-footer.pro .f-list li{ margin: 6px 0; }
-
-/* Responsive */
+/* site.css — small overrides kept for footer alignment */
+.site-footer.pro{background:transparent; color:inherit; font-size:0.82rem}
+.site-footer.pro .footer-wrap{display:flex !important; align-items:flex-start; justify-content:space-between !important; gap:48px}
+.site-footer.pro .f-col{min-width:240px}
 @media (max-width: 720px){
-  .site-footer.pro .footer-wrap{ flex-direction: column; align-items: center; gap: 24px; }
-  .site-footer.pro .f-col{ min-width: 0; width: 100%; max-width: 560px; }
-  .site-footer.pro .footer-copy{ text-align: left; }
+  .site-footer.pro .footer-wrap{flex-direction:column; align-items:flex-start; gap:16px}
+  .site-footer.pro .f-col{min-width:0; width:100%}
+}
+
+
+/* Price page note */
+.subnote{margin-top:10px; margin-bottom:18px; max-width:72ch; color:rgba(255,255,255,.78); font-size:0.95rem; line-height:1.6}
+.subnote a{text-decoration:underline; text-underline-offset:3px}
+@media (max-width: 720px){
+  .subnote{font-size:0.92rem; margin-bottom:14px}
 }
