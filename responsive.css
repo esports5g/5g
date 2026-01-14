@@ -12,11 +12,7 @@
 /* Prevent accidental horizontal scroll on small screens */
 html,body{overflow-x:hidden}
 
-/* Mobile nav: full-height sheet + scrollable */
-@media (max-width: 960px){
-  nav#nav.nav{inset: 60px 14px 14px 14px !important; max-height: calc(100vh - 74px); overflow:auto; padding-bottom: calc(14px + env(safe-area-inset-bottom));}
-  nav#nav.nav a{padding: 12px 14px;}
-}
+/* Mobile nav is handled in styles.css (horizontal scroll row). */
 
 /* Compact spacing + better tap targets */
 @media (max-width: 640px){

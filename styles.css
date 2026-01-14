@@ -60,6 +60,9 @@ p{margin:0 0 12px}
 .brand-logo{height:28px;width:auto}
 .brandtxt{font-weight:900;letter-spacing:.05em;opacity:.92}
 .nav{display:flex;align-items:center;gap:10px;flex-wrap:wrap;justify-content:flex-end}
+/* hide scrollbars when nav becomes horizontally scrollable on mobile */
+.nav{scrollbar-width:none}
+.nav::-webkit-scrollbar{display:none}
 .nav a{
   text-decoration:none;
   padding: 8px 12px;
@@ -72,21 +75,43 @@ p{margin:0 0 12px}
 .nav a:hover{background: color-mix(in srgb, var(--surface) 88%, transparent); border-color: var(--line); transform: translateY(-1px)}
 #lang-switch{border-color: color-mix(in srgb, var(--accent) 35%, transparent); background: color-mix(in srgb, var(--accent) 12%, transparent)}
 
+/* active page indicator */
+.nav a.is-active{border-color: color-mix(in srgb, var(--accent) 55%, var(--line)); background: color-mix(in srgb, var(--accent) 14%, transparent)}
+
 .hamb{display:none; width:44px; height:44px; border-radius: 12px;
   border:1px solid var(--line); background: color-mix(in srgb, var(--surface) 78%, transparent);
   color: var(--text);
 }
 .hamb span{display:block;height:2px;background: currentColor; margin:6px 10px; opacity:.9}
 @media (max-width: 960px){
-  .nav{position: fixed; inset: 60px 14px auto 14px; display:none; flex-direction:column; align-items:stretch;
-        padding: 14px; border-radius: var(--radius); border:1px solid var(--line);
-        background: color-mix(in srgb, var(--bg) 70%, transparent); backdrop-filter: blur(12px) saturate(150%);
-        box-shadow: var(--shadow);
+  /*
+    Mobile header: no hamburger.
+    Show a horizontally-scrollable nav row under the logo.
+  */
+  .hdr .wrap.row{flex-wrap:wrap}
+  .brand{flex:1 1 auto}
+
+  .nav{
+    position: static;
+    width: 100%;
+    order: 3;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    flex-wrap: nowrap;
+    gap: 8px;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    padding: 10px 2px calc(8px + env(safe-area-inset-bottom));
+    margin-top: 6px;
+    border-top: 1px solid var(--line);
   }
-  .nav a{border-color: var(--line); background: color-mix(in srgb, var(--surface) 70%, transparent);}
+  .nav a{flex:0 0 auto; border-color: var(--line); background: color-mix(in srgb, var(--surface) 70%, transparent); padding: 10px 12px;}
   .nav.open{display:flex}
-  .hamb{display:inline-grid; place-items:center}
-  body.menu-open{overflow:hidden}
+
+  /* hard-disable hamburger UI */
+  .hamb{display:none !important}
+  body.menu-open{overflow:auto}
 }
 
 /* Hero */

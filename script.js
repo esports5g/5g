@@ -4,35 +4,26 @@
   function qsa(sel, root){ return Array.from((root||document).querySelectorAll(sel)); }
 
   document.addEventListener('DOMContentLoaded', function(){
-    const hamb = qs('#hamb');
     const nav  = qs('#nav');
 
-    // Mobile menu
-    function setMenu(open){
-      if(!nav || !hamb) return;
-      nav.classList.toggle('open', open);
-      hamb.classList.toggle('open', open);
-      hamb.setAttribute('aria-expanded', open ? 'true' : 'false');
-      document.body.classList.toggle('menu-open', open);
-    }
-    if(hamb && nav){
-      hamb.addEventListener('click', function(e){
-        e.preventDefault();
-        e.stopPropagation();
-        setMenu(!nav.classList.contains('open'));
+    // Mark current page in nav (works for both / and /en/ pages)
+    if(nav){
+      const path = (location.pathname || '').split('/').filter(Boolean);
+      const current = (path[path.length - 1] || 'index.html');
+      const links = qsa('a[href]', nav);
+      const hit = links.find(a => {
+        const href = (a.getAttribute('href')||'').split('#')[0];
+        if(!href) return false;
+        // match by last segment to tolerate relative paths
+        const last = href.split('/').filter(Boolean).pop();
+        return last === current;
       });
-      document.addEventListener('click', function(e){
-        if(!nav.classList.contains('open')) return;
-        if(hamb.contains(e.target) || nav.contains(e.target)) return;
-        setMenu(false);
-      });
-      document.addEventListener('keydown', function(e){
-        if(e.key === 'Escape') setMenu(false);
-      });
-      nav.addEventListener('click', function(e){
-        const a = e.target.closest('a');
-        if(a) setMenu(false);
-      });
+      if(hit){
+        hit.classList.add('is-active');
+        // bring active item into view on small screens
+        const reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        try{ hit.scrollIntoView({inline:'center', block:'nearest', behavior: reduce ? 'auto' : 'smooth'}); }catch(_){ /* ignore */ }
+      }
     }
 
     // Header shadow on scroll
