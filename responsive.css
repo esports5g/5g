@@ -31,6 +31,34 @@ html,body{overflow-x:hidden}
 
   .card{padding: 16px}
 
+
+/* NEWS cards: unify box size + typography (mobile only) */
+.news-section .cards{
+  /* show ~1 card + a peek of the next, swipe horizontally */
+  grid-auto-columns: 86%;
+  gap: 12px;
+  padding-inline: 2px;
+}
+.news-section .card{
+  display:flex;
+  flex-direction:column;
+  min-height: 220px;
+}
+.news-section .card .meta{white-space:nowrap}
+.news-section .card h3{
+  display:-webkit-box;
+  -webkit-box-orient:vertical;
+  -webkit-line-clamp:2;
+  overflow:hidden;
+}
+.news-section .card p{
+  display:-webkit-box;
+  -webkit-box-orient:vertical;
+  -webkit-line-clamp:3;
+  overflow:hidden;
+  margin-top: 10px;
+}
+
   /* Tables: readable on small screens */
   .price-table{display:block; width:100%; overflow-x:auto; -webkit-overflow-scrolling:touch; border-radius: 14px}
   .price-table th,.price-table td{padding: 10px 8px; font-size: 13px}
