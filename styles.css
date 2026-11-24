@@ -409,3 +409,27 @@ input, textarea, select { color: var(--ink); background: #0b1426; border-color: 
   .topup-table :is(th,td) { padding-inline: 4px; font-size: .875rem; }
   .fare-grid .price strong { font-size: clamp(3.6rem,15vw,6.5rem); }
 }
+
+/* Homepage rates and campaign artwork. */
+.home-fares { padding-bottom: clamp(28px, 6vw, 70px); }
+.home-fares .fare-grid .price span { margin-bottom: 0; }
+.home-fares > .btn { margin-top: 18px; color: var(--signal); }
+.home-fares > .btn:hover { background: #172a47; }
+.home-cast { overflow: hidden; border: 1px solid #486a94; background: #10192a; }
+.home-cast img { width: 100%; height: auto; display: block; }
+.guide-blocks { display: grid; gap: clamp(14px, 2vw, 24px); max-width: 960px; margin-inline: auto; }
+.guide-block { padding: clamp(18px, 4vw, 42px); border: 1px solid var(--line); background: var(--panel); }
+.guide-block h2 { font-size: clamp(1.28rem, 3vw, 2.25rem); }
+.guide-block :is(ul,ol) { padding-inline-start: 1.3em; }
+.guide-block li + li { margin-top: .7em; }
+.guide-block li::marker { color: var(--signal); font-weight: 800; }
+.guide-block p:last-child { margin-bottom: 0; }
+.guide-exit { border-inline-start: 4px solid var(--signal); background: #152544; }
+.guide-command { font-size: clamp(1.15rem, 3vw, 1.8rem); font-weight: 800; color: var(--signal); }
+@media (min-width: 721px) and (max-width: 1050px) {
+  .stage-speed strong { font-size: clamp(5.25rem, 14vw, 10rem); }
+}
+@media (max-width: 380px) {
+  .stage-copy .hardware { flex-wrap: wrap; }
+  .home-fares .btn { width: 100%; }
+}
