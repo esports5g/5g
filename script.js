@@ -80,6 +80,7 @@
       const xbtn = qs('#lbClose', lb);
 
       let idx = 0;
+      let trigger = null;
       function show(i){
         idx = i;
         const el = imgs[idx];
@@ -92,7 +93,7 @@
       function hide(){
         lb.classList.remove('active');
         document.body.style.overflow = '';
-        setTimeout(()=>{ img.src=''; }, 120);
+        trigger?.focus();
       }
       function navBy(d){
         idx = (idx + d + imgs.length) % imgs.length;
@@ -100,8 +101,13 @@
       }
 
       imgs.forEach((el,i)=>{
-        el.style.cursor = 'zoom-in';
-        el.addEventListener('click', ()=>show(i), {passive:true});
+        const control = el.closest('button') || el;
+        control.style.cursor = 'zoom-in';
+        control.addEventListener('click', () => {
+          trigger = control;
+          show(i);
+          xbtn?.focus();
+        });
       });
 
       prev && prev.addEventListener('click', (e)=>{ e.stopPropagation(); navBy(-1); });
@@ -111,6 +117,14 @@
 
       document.addEventListener('keydown', (e)=>{
         if(!lb.classList.contains('active')) return;
+        if(e.key === 'Tab') {
+          const controls = [xbtn, prev, next].filter(Boolean);
+          const edge = e.shiftKey ? controls[0] : controls.at(-1);
+          if(document.activeElement === edge){
+            e.preventDefault();
+            (e.shiftKey ? controls.at(-1) : controls[0]).focus();
+          }
+        }
         if(e.key === 'Escape') hide();
         if(e.key === 'ArrowLeft') navBy(-1);
         if(e.key === 'ArrowRight') navBy(1);
