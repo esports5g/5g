@@ -1,7 +1,18 @@
 (function(){
+  const configUrl = new URL('./gas.config.json', document.currentScript.src);
+  const english = document.documentElement.lang.toLowerCase().startsWith('en');
+  const messages = english ? {
+    sending: 'Sending…',
+    sent: 'Thank you. Your message has been sent.',
+    fallback: 'Your email app has been opened.'
+  } : {
+    sending: '送信中です…',
+    sent: 'お問い合わせを送信しました。ありがとうございます。',
+    fallback: 'メールソフトを開きました。'
+  };
   async function loadConfig(){
     try{
-      const r = await fetch('./gas.config.json', { cache: 'no-store' });
+      const r = await fetch(configUrl, { cache: 'no-store' });
       if(!r.ok) throw new Error('no config');
       return await r.json();
     }catch(e){
@@ -54,7 +65,7 @@ ${data.message||''}`);
       if (form.dataset.sending === '1') return;
       form.dataset.sending = '1';
 
-      status.textContent = '送信中... / Sending...';
+      status.textContent = messages.sending;
       const data = serialize(form);
       if (data.website) { form.dataset.sending=''; return; }
 
@@ -78,18 +89,18 @@ ${data.message||''}`);
             return res.ok;
           }, 12000); 
           if (ok){
-            status.textContent = 'ありがとうございました。送信が完了しました。/ 已发送，我们会尽快联系您。/ Sent successfully.';
+            status.textContent = messages.sent;
             status.className='status ok';
             form.reset();
             return;
           }
         }
         mailtoFallback(data, to);
-        status.textContent = 'メールソフトに切り替えました。/ 已切换到邮件发送。';
+        status.textContent = messages.fallback;
         status.className='status ok';
       }catch(err){
         mailtoFallback(data, to);
-        status.textContent = 'メールソフトに切り替えました。/ 已切换到邮件发送。';
+        status.textContent = messages.fallback;
         status.className='status ok';
       } finally {
         form.dataset.sending='';
