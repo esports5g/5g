@@ -645,3 +645,63 @@ body::before {
   }
   .cursor-glow.is-visible { opacity: .8; }
 }
+
+/* One continuous scene instead of separate image and title blocks. */
+.page-mast[class*="wardrobe-"] {
+  --mast-height: clamp(230px, 23vw, 340px);
+  min-height: var(--mast-height);
+  padding-block: clamp(28px,5vw,66px);
+  background: radial-gradient(ellipse at 69% 8%, #1e315a78, transparent 72%);
+  border-bottom: 0;
+}
+.page-mast[class*="wardrobe-"] .page-mast-art {
+  inset: 0 0 0 auto;
+  width: min(77%, 1120px);
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+  mask-image: linear-gradient(90deg,transparent 0%,#0005 13%,#000 34%),
+    linear-gradient(180deg,#000 63%,#0009 82%,transparent 100%);
+  mask-composite: intersect;
+}
+.page-mast[class*="wardrobe-"]::after {
+  background: linear-gradient(90deg,#080e20ac 11%,#080e2054 43%,transparent 69%);
+}
+.page-mast[class*="wardrobe-"] h1 {
+  max-width: min(58%, 25ch);
+  font-size: clamp(1.9rem, 4.05vw, 4.15rem);
+  line-height: 1.12;
+  letter-spacing: -.045em;
+  overflow-wrap: anywhere;
+  text-shadow: 0 2px 18px #080e20b0;
+}
+.page > .page-mast[class*="wardrobe-"] {
+  --mast-height: clamp(210px,26vw,300px);
+  padding-inline: 0;
+  margin-bottom: clamp(18px,3vw,36px);
+}
+.page > .page-mast[class*="wardrobe-"] h1 { font-size: clamp(1.7rem,3.65vw,3.25rem); }
+.page-mast + .panel { padding-top: clamp(18px,3vw,45px); }
+@media (max-width: 720px) {
+  .page-mast[class*="wardrobe-"] {
+    min-height: 0;
+    display: block;
+    padding: 0 0 12px;
+    background: transparent;
+  }
+  .page-mast[class*="wardrobe-"] .page-mast-art {
+    position: relative;
+    display: block;
+    z-index: 0;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 768 / 341;
+    object-fit: cover;
+    mask-image: linear-gradient(180deg,#000 61%,#000d 76%,transparent 100%);
+    mask-composite: add;
+  }
+  .page-mast[class*="wardrobe-"]::after { content: none; }
+  .page-mast[class*="wardrobe-"] .wrap { position: relative; margin-top: -10px; }
+  .page-mast[class*="wardrobe-"] h1 { max-width: 100%; font-size: clamp(1.65rem,6.5vw,2.8rem); }
+}
+
