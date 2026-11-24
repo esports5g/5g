@@ -172,3 +172,8 @@
 
 .arena #seats { scroll-margin-top: calc(var(--hdrHpx, 78px) + 12px); }
 .arena-gallery .img-grid figure.reveal { opacity: 1; transform: none; }
+
+.arena .lightbox:not(.active) { visibility: hidden; }
+@media (max-width: 680px) {
+  .arena-hero picture img { object-position: 70% center; }
+}
