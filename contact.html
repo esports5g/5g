@@ -5,10 +5,8 @@
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1" name="viewport"/>
 <title>お問い合わせ | ESportsCafe 5G</title><link href="assets/favicon.svg" rel="icon" type="image/svg+xml"/><link href="assets/favicon.svg" rel="shortcut icon"/>
-
 <link rel="stylesheet" href="./styles.css">
-<link href="assets/site.css" rel="stylesheet"/>
-<link rel="stylesheet" href="responsive.css"></head>
+</head>
 <body>
 <header class="hdr">
 <div class="wrap row">
@@ -20,13 +18,12 @@
 <a href="guide.html"><span class="jp">利用案内</span></a>
 <a href="terms.html"><span class="jp">利用規約</span></a>
 <a href="faq.html"><span class="jp">よくある質問</span></a>
-<a href="contact.html"><span class="jp">お問い合わせ</span></a><a href="./en/contact.html" id="lang-switch">🌐 EN</a>
+<a href="contact.html" aria-current="page"><span class="jp">お問い合わせ</span></a><a href="./en/contact.html" id="lang-switch">🌐 EN</a>
 </nav>
-<button aria-label="menu" class="hamb" id="hamb"><span></span><span></span><span></span></button>
+
 </div>
 </header>
-
-<div class="wrap">
+<main class="wrap contact-shell">
 <div class="card">
 <div class="topbar">
 <button aria-label="戻る / 返回 / Back" class="backbtn" id="goBack">
@@ -73,7 +70,21 @@
 <div class="status" id="status"></div>
 </form>
 </div>
+</main>
+<footer class="site-footer pro">
+<div class="container footer-wrap">
+<div class="f-col policies">
+<ul class="f-links footer-policies footer-inline"><li><span class="copyright-inline">© ESPORTS CAFE 5G</span></li>
+<li><a href="privacy-policy.html">プライバシーポリシー</a></li>
+<li><a href="cookie-policy.html">Cookieポリシー</a></li>
+<li><a href="antisocial-exclusion.html">反社会的勢力排除</a></li>
+<li><a href="information-security.html">情報セキュリティ</a></li>
+<li><a href="tokushoho.html">特定商取引法に基づく表示</a></li>
+</ul>
 </div>
+</div>
+</footer>
+
 <script defer="" src="./gas.email.js"></script>
 <script>
     // Back button behavior: go to previous page, otherwise go to index.html
@@ -88,20 +99,6 @@
       }
     });
   </script>
-<footer class="site-footer pro">
-<div class="container footer-wrap" style="display:block;padding-top:0;text-align:left;overflow-x:auto;white-space:nowrap;padding-bottom:0;margin-top:0">
-<div class="f-col policies">
-<ul class="f-links footer-policies footer-inline" style="margin-top:0;display:flex;align-items:center;justify-content:flex-start;list-style:none;padding:0;margin:0;flex-wrap:nowrap;gap:24px"><li style="white-space:nowrap"><span class="copyright-inline">© ESPORTS CAFE 5G</span></li>
-<li style="display:inline-flex;margin:0;padding:0;white-space:nowrap"><a href="privacy-policy.html" style="text-decoration:none;line-height:1.8;white-space:nowrap">プライバシーポリシー</a></li>
-<li style="display:inline-flex;margin:0;padding:0;white-space:nowrap"><a href="cookie-policy.html" style="text-decoration:none;line-height:1.8;white-space:nowrap">Cookieポリシー</a></li>
-<li style="display:inline-flex;margin:0;padding:0;white-space:nowrap"><a href="antisocial-exclusion.html" style="text-decoration:none;line-height:1.8;white-space:nowrap">反社会的勢力排除</a></li>
-<li style="display:inline-flex;margin:0;padding:0;white-space:nowrap"><a href="information-security.html" style="text-decoration:none;line-height:1.8;white-space:nowrap">情報セキュリティ</a></li>
-<li style="display:inline-flex;margin:0;padding:0;white-space:nowrap"><a href="tokushoho.html" style="text-decoration:none;line-height:1.8;white-space:nowrap">特定商取引法に基づく表示</a></li>
-</ul>
-</div>
-</div>
-</footer>
-
-  <script src="./script.js"></script>
+<script src="./script.js"></script>
 </body>
 </html>

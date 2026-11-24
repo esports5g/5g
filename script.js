@@ -20,9 +20,6 @@
       });
       if(hit){
         hit.classList.add('is-active');
-        // bring active item into view on small screens
-        const reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-        try{ hit.scrollIntoView({inline:'center', block:'nearest', behavior: reduce ? 'auto' : 'smooth'}); }catch(_){ /* ignore */ }
       }
     }
 
@@ -42,16 +39,6 @@
     }
     syncHdr();
     window.addEventListener('resize', syncHdr, {passive:true});
-
-    // Gallery reveal
-    const figs = qsa('.img-grid figure');
-    if(figs.length){
-      figs.forEach(f => f.classList.add('reveal'));
-      const io = new IntersectionObserver((ents)=>{
-        ents.forEach(e => { if(e.isIntersecting) e.target.classList.add('show'); });
-      }, { threshold: 0.18 });
-      figs.forEach(f => io.observe(f));
-    }
 
     // Lightbox (opt-in: if .img-grid exists)
     const imgs = qsa('.img-grid img');
@@ -80,6 +67,7 @@
       const xbtn = qs('#lbClose', lb);
 
       let idx = 0;
+      let trigger = null;
       function show(i){
         idx = i;
         const el = imgs[idx];
@@ -92,7 +80,7 @@
       function hide(){
         lb.classList.remove('active');
         document.body.style.overflow = '';
-        setTimeout(()=>{ img.src=''; }, 120);
+        trigger?.focus();
       }
       function navBy(d){
         idx = (idx + d + imgs.length) % imgs.length;
@@ -100,8 +88,12 @@
       }
 
       imgs.forEach((el,i)=>{
-        el.style.cursor = 'zoom-in';
-        el.addEventListener('click', ()=>show(i), {passive:true});
+        const control = el.closest('button') || el;
+        control.addEventListener('click', () => {
+          trigger = control;
+          show(i);
+          xbtn?.focus();
+        });
       });
 
       prev && prev.addEventListener('click', (e)=>{ e.stopPropagation(); navBy(-1); });
@@ -111,6 +103,14 @@
 
       document.addEventListener('keydown', (e)=>{
         if(!lb.classList.contains('active')) return;
+        if(e.key === 'Tab') {
+          const controls = [xbtn, prev, next].filter(Boolean);
+          const index = e.shiftKey ? 0 : controls.length - 1;
+          if (document.activeElement === controls[index]) {
+            e.preventDefault();
+            controls[controls.length - 1 - index].focus();
+          }
+        }
         if(e.key === 'Escape') hide();
         if(e.key === 'ArrowLeft') navBy(-1);
         if(e.key === 'ArrowRight') navBy(1);

@@ -4,10 +4,10 @@
 <title>ESPORTS CAFE 5G — HOME</title>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1" name="viewport"/>
-<link href="https://fonts.googleapis.com" rel="preconnect"/>
-<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800;900&amp;family=Noto+Sans+JP:wght@400;600;700;900&amp;display=swap" rel="stylesheet"/>
-<link href="./styles.css" rel="stylesheet"/>
+
+
+
+
 
 <link href="./assets/icons/favicon.ico" rel="icon">
 <link href="./assets/icons/favicon-32.png" rel="icon" sizes="32x32" type="image/png"/>
@@ -15,20 +15,9 @@
 <link href="./assets/icons/apple-touch-icon.png" rel="apple-touch-icon"/>
 <link href="./assets/icons/android-chrome-192x192.png" rel="icon" sizes="192x192" type="image/png"/>
 <meta content="#0b1020" name="theme-color"/>
-<link href="assets/site.css" rel="stylesheet"/>
-</link><link rel="stylesheet" href="responsive.css">
-<style>
-@media (max-width: 767px){
-  .hero.mp{ background: url('./assets/img/stations_angle_mobile_9x16.jpg') center/contain no-repeat !important; }
-}
-@media (max-width: 767px) and (min-width: 0px){
-  /* keep a subtle underlay to avoid perceived borders */
-  .hero.mp::before{ content:""; position:absolute; inset:0; background: url('./assets/img/stations_angle_mobile_9x16.jpg') center/cover no-repeat; filter: blur(10px); opacity: .35; }
-  .hero-inner{ position: relative; z-index: 1; }
-}
-</style>
-
-</head><body>
+<link rel="stylesheet" href="./styles.css">
+</head>
+<body>
 <header class="hdr">
 <div class="wrap row">
 <a class="brand" href="index.html">
@@ -36,7 +25,7 @@
 <span class="brandtxt">ESPORTS CAFE</span>
 </a>
 <nav class="nav" id="nav">
-<a href="index.html"><span class="jp">ホーム</span></a>
+<a href="index.html" aria-current="page"><span class="jp">ホーム</span></a>
 <a href="price.html"><span class="jp">料金</span></a>
 <a href="spec.html"><span class="jp">スペック</span></a>
 <a href="guide.html"><span class="jp">利用案内</span></a>
@@ -44,18 +33,28 @@
 <a href="faq.html"><span class="jp">よくある質問</span></a>
 <a href="contact.html"><span class="jp">お問い合わせ</span></a><a href="./en/index.html" id="lang-switch">🌐 EN</a>
 </nav>
-<button aria-label="menu" class="hamb" id="hamb"><span></span><span></span><span></span></button>
+
 </div>
 </header>
-
-<section class="hero mp" style="background: url('./assets/img/stations_angle.jpg') center/cover no-repeat;">
-<div class="wrap hero-inner">
-<div class="hero-cta">
-<p class="lead">新大久保の最強スペック｜R9 9950X3D /RTX 5080 / 610Hz /搭載</p>
-<div class="cta">
+<main>
+<section class="stage">
+  <div class="stage-art" aria-hidden="true"><span class="stage-model"><i></i><i></i><i></i></span></div>
+  <div class="wrap stage-inner">
+    <div class="stage-copy"><h1>新大久保の最強スペック<span class="divider">｜</span><span class="hardware">R9 9950X3D /RTX 5080 / </span></h1></div><p class="stage-speed"><strong>610Hz</strong><span> /搭載</span></p>
+    <div class="cta">
 <a class="btn primary" href="http://portal.esportscafe5g.com">登録／ログイン／予約</a>
 </div>
-</div>
+  </div>
+</section>
+<section class="panel wrap" id="gallery">
+<h2 class="st">GALLERY</h2>
+<div class="img-grid">
+<figure><button type="button"><img alt="上段PCリグ" loading="lazy" src="./assets/img/rigs_top_row.jpg"/></button></figure>
+<figure><button type="button"><img alt="席列" loading="lazy" src="./assets/img/stations_row.jpg"/></button></figure>
+<figure><button type="button"><img alt="席全景（斜め）" loading="lazy" src="./assets/img/stations_angle_gallery.jpg"/></button></figure>
+<figure><button type="button"><img alt="オープンフレームPC" loading="lazy" src="./assets/img/open_frame_rig.jpg"/></button></figure>
+<figure><button type="button"><img alt="最新パーツ一式" loading="lazy" src="./assets/img/parts_stack.jpg"/></button></figure>
+<figure><button type="button"><img alt="店舗外観" loading="lazy" src="./assets/img/building_exterior.jpg"/></button></figure>
 </div>
 </section>
 <section class="panel wrap news-section">
@@ -139,19 +138,8 @@
   </div>
 </div>
 </section>
-
-<section class="panel wrap" id="gallery">
-<h2 class="st">GALLERY</h2>
-<div class="img-grid">
-<figure><img alt="上段PCリグ" loading="lazy" src="./assets/img/rigs_top_row.jpg"/></figure>
-<figure><img alt="席列" loading="lazy" src="./assets/img/stations_row.jpg"/></figure>
-<figure><img alt="席全景（斜め）" loading="lazy" src="./assets/img/stations_angle_gallery.jpg"/></figure>
-<figure><img alt="オープンフレームPC" loading="lazy" src="./assets/img/open_frame_rig.jpg"/></figure>
-<figure><img alt="最新パーツ一式" loading="lazy" src="./assets/img/parts_stack.jpg"/></figure>
-<figure><img alt="店舗外観" loading="lazy" src="./assets/img/building_exterior.jpg"/></figure>
-</div>
-<script src="./script.js"></script>
-
+</main>
+<footer class="site-footer pro"><div class="container footer-wrap"><div class="f-col policies"><ul class="f-links footer-policies footer-inline"><li><span class="copyright-inline">© ESPORTS CAFE 5G</span></li><li><a href="privacy-policy.html">プライバシーポリシー</a></li><li><a href="cookie-policy.html">Cookieポリシー</a></li><li><a href="antisocial-exclusion.html">反社会的勢力排除</a></li><li><a href="information-security.html">情報セキュリティ</a></li><li><a href="tokushoho.html">特定商取引法に基づく表示</a></li></ul></div></div></footer>
 <div aria-modal="true" class="lightbox" id="lightbox" role="dialog">
 <button aria-label="閉じる" class="close" id="lbClose">×</button>
 <div class="nav">
@@ -161,5 +149,6 @@
 <img alt="" id="lbImg" src=""/>
 <div class="caption" id="lbCap"></div>
 </div>
-<footer class="site-footer pro"><div class="container footer-wrap" style="display:block;padding-top:0;text-align:left;overflow-x:auto;white-space:nowrap;padding-bottom:0;margin-top:0"><div class="f-col policies"><ul class="f-links footer-policies footer-inline" style="margin-top:0;display:flex;align-items:center;justify-content:flex-start;list-style:none;padding:0;margin:0;flex-wrap:nowrap;gap:24px"><li style="white-space:nowrap"><span class="copyright-inline">© ESPORTS CAFE 5G</span></li><li style="display:inline-flex;margin:0;padding:0;white-space:nowrap"><a href="privacy-policy.html" style="text-decoration:none;line-height:1.8;white-space:nowrap">プライバシーポリシー</a></li><li style="display:inline-flex;margin:0;padding:0;white-space:nowrap"><a href="cookie-policy.html" style="text-decoration:none;line-height:1.8;white-space:nowrap">Cookieポリシー</a></li><li style="display:inline-flex;margin:0;padding:0;white-space:nowrap"><a href="antisocial-exclusion.html" style="text-decoration:none;line-height:1.8;white-space:nowrap">反社会的勢力排除</a></li><li style="display:inline-flex;margin:0;padding:0;white-space:nowrap"><a href="information-security.html" style="text-decoration:none;line-height:1.8;white-space:nowrap">情報セキュリティ</a></li><li style="display:inline-flex;margin:0;padding:0;white-space:nowrap"><a href="tokushoho.html" style="text-decoration:none;line-height:1.8;white-space:nowrap">特定商取引法に基づく表示</a></li></ul></div></div></footer>
-</section></body></html>
+<script src="./script.js"></script>
+</body>
+</html>
