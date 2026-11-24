@@ -441,54 +441,69 @@ body::before, body::after { content: none; }
   border-color: #b9f8f7;
 }
 
-/* Art and information use separate grid rows so the original artwork stays legible. */
+/* Homepage — an equipment-led layout beside the venue's own photograph. */
 body .hero.mp {
   isolation: isolate;
+  position: relative;
   display: grid;
-  grid-template-columns: minmax(0, 1fr);
-  min-height: 0;
-  background: var(--surface2) !important; /* Override background declarations in both homepage templates. */
-  border-bottom: 1px solid #5fbfc467;
+  grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+  align-items: stretch;
+  min-height: clamp(560px, 77svh, 860px);
+  background: #10181b !important; /* Both homepages supply a legacy inline background. */
+  border-bottom: 1px solid var(--line);
 }
 body .hero.mp::before {
   content: "";
   position: static;
-  grid-area: 1 / 1;
-  min-height: clamp(445px, 65svh, 790px);
-  background: linear-gradient(0deg, #07101670, transparent 55%),
-    url("./assets/img/stations_angle.jpg") center / cover no-repeat;
+  grid-area: 1 / 2;
+  background:
+    linear-gradient(90deg, #10181b53, transparent 36%),
+    url("./assets/img/building_exterior.jpg") 58% center / cover no-repeat;
   filter: none;
   opacity: 1;
-  pointer-events: none;
 }
 .hero.mp::after {
   content: "";
-  grid-area: 1 / 1;
-  z-index: 1;
+  grid-area: 1 / 2;
   align-self: stretch;
-  margin: clamp(12px, 2vw, 28px);
-  border: 1px solid #bce7eb39;
+  margin: clamp(12px, 2vw, 26px);
+  border: 1px solid #e2fbf95c;
   pointer-events: none;
 }
-.hero-inner { grid-area: 2 / 1; padding-block: 0; }
-.hero-cta {
-  max-width: none;
-  grid-template-columns: minmax(0, 1fr) auto;
-  align-items: center;
-  justify-items: start;
-  gap: 18px clamp(24px, 5vw, 72px);
-  text-align: left;
-  padding: clamp(17px, 3vw, 35px) 0;
+.hero-inner {
+  grid-area: 1 / 1;
+  align-self: center;
+  width: 100%;
+  padding: 58px clamp(24px, 4.4vw, 74px);
 }
+.hero-cta { max-width: none; gap: 25px; text-align: left; place-items: start; }
 .hero-cta .lead {
   margin: 0;
   color: var(--text);
-  font-size: clamp(1rem, 2.25vw, 1.8rem);
-  font-weight: 780;
-  line-height: 1.45;
-  letter-spacing: -.025em;
+  font-size: clamp(1.65rem, 3.1vw, 3.6rem);
+  font-weight: 820;
+  letter-spacing: -.055em;
+  line-height: 1.18;
+  text-wrap: balance;
 }
-.hero-cta .btn { min-height: 52px; padding-inline: 24px; white-space: nowrap; }
+.hero-positioning { display: block; }
+.hero-divider { color: var(--accent); font-size: .55em; }
+.hero-compute {
+  display: block;
+  margin-top: 28px;
+  color: #c1d0d2;
+  font: 650 clamp(.86rem, 1.35vw, 1.08rem)/1.5 var(--font-data);
+  letter-spacing: -.03em;
+}
+.hero-refresh { display: block; margin-top: 4px; }
+.hero-refresh strong {
+  color: var(--accent);
+  font: 800 clamp(3.7rem, 7.9vw, 9rem)/.95 var(--font-ui);
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -.095em;
+}
+.hero-refresh em { margin-inline-start: .55em; color: var(--muted); font: 650 .85rem/1.5 var(--font-data); font-style: normal; }
+.hero-cta .btn { min-height: 54px; padding-inline: clamp(12px, 2vw, 24px); }
 
 body > .panel, body > .wrap { padding-block: var(--section-space); }
 .st, .page h1, body > .wrap > .card > h1 {
@@ -616,13 +631,12 @@ body > .panel.alt .price-table { display: table; }
   .news-list { max-height: 330px; }
 }
 @media (max-width: 767px) {
-  body .hero.mp::before {
-    min-height: clamp(340px, 54svh, 540px);
-    background-image: linear-gradient(0deg, #07101670, transparent 55%),
-      url("./assets/img/stations_angle_mobile_9x16.jpg");
-  }
-  .hero-inner { padding-block: 0; }
-  .hero-cta { grid-template-columns: minmax(0, 1fr); gap: 12px; }
+  body .hero.mp { grid-template-columns: minmax(0, 1fr); min-height: auto; }
+  body .hero.mp::before, .hero.mp::after { grid-area: 1 / 1; }
+  body .hero.mp::before { min-height: clamp(220px, 39svh, 380px); background-position: 58% center; }
+  .hero.mp .hero-inner { grid-area: 2 / 1; padding: 30px var(--gutter) 36px; }
+  .hero-cta { gap: 18px; }
+  .hero-compute { margin-top: 16px; }
   .hero-cta .cta { width: 100%; }
 }
 @media (max-width: 640px) {
@@ -636,4 +650,23 @@ body > .panel.alt .price-table { display: table; }
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   *, *::before, *::after { animation: none !important; transition: none !important; }
+}
+
+/* Photographs and article blocks follow the same architectural grid. */
+.news-feature {
+  background:
+    linear-gradient(90deg, #a5e4dc13 1px, transparent 1px) 0 0 / 34px 34px,
+    linear-gradient(0deg, #a5e4dc13 1px, transparent 1px) 0 0 / 34px 34px,
+    linear-gradient(130deg, #213431, #121a1f);
+}
+#gallery .img-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+#gallery .img-grid figure:nth-child(-n+2) { grid-column: span 2; }
+#gallery .img-grid figure:nth-child(-n+2) img { aspect-ratio: 16 / 9; }
+body > .panel.alt { border-block: 1px solid var(--line); }
+body > .panel > .grid > .card { border-top: 2px solid #446366; }
+body > .panel > .grid > .card:is(.holo, .hot) { border-top-color: var(--accent); }
+@media (max-width: 640px) {
+  #gallery .img-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  #gallery .img-grid figure:nth-child(2) { grid-column: auto; }
+  #gallery .img-grid figure:nth-child(2) img { aspect-ratio: 16 / 10; }
 }
