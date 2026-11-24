@@ -433,3 +433,53 @@ input, textarea, select { color: var(--ink); background: #0b1426; border-color: 
   .stage-copy .hardware { flex-wrap: wrap; }
   .home-fares .btn { width: 100%; }
 }
+
+/* The characters lead the home hero; the equipment stays in live text. */
+.home-page .hdr { border-bottom: 1px solid #4569a0; }
+.home-page .brand-logo { height: 35px; }
+.new-stage { position: relative; isolation: isolate; overflow: hidden; background: #0a142b; }
+.new-stage-art { position: absolute; inset: 0 0 0 36%; z-index: -2; }
+.new-stage-art img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 36%; }
+.new-stage::after {
+  position: absolute; inset: 0; z-index: -1; content: "";
+  background: linear-gradient(90deg,#0a142b 26%,#0a142bdb 37%,#0a142b22 57%,transparent 77%),
+    linear-gradient(0deg,#0a142b98,transparent 45%);
+}
+.new-stage-inner { display: flex; align-items: center; min-height: clamp(525px,75svh,790px); }
+.new-stage-copy { width: min(48%,590px); padding-block: 46px; }
+.new-stage h1 { margin: 0 0 18px; font-size: clamp(2rem,4.3vw,4.8rem); font-weight: 850; letter-spacing: -.055em; text-wrap: balance; }
+.new-stage-speed { margin: 0; color: var(--signal); font-size: clamp(5.2rem,12vw,11rem); font-weight: 880; font-style: italic; line-height: .85; letter-spacing: -.085em; }
+.new-stage-speed span { font-size: .48em; letter-spacing: -.045em; margin-inline-start: .06em; }
+.new-stage-rig { margin: 16px 0 24px; color: #dae9ff; font: 680 clamp(.88rem,1.5vw,1.12rem)/1.65 var(--mono); }
+.new-stage-rig span { color: #90b6e4; }
+.new-stage .btn { min-height: 52px; background: var(--signal); color: #0b1c31; border-color: var(--signal); }
+.new-stage .btn:hover { background: white; border-color: white; }
+.fare-gear { display: grid; gap: 9px; margin: 20px 0 0; padding-top: 16px; border-top: 1px solid #6680a687; }
+.fare-gear div { display: grid; grid-template-columns: minmax(0, 105px) minmax(0, 1fr); gap: 7px; }
+.fare-gear dt { color: #bfd2ee; font-size: .82rem; overflow-wrap: anywhere; }
+.fare-gear dd { margin: 0; font-size: .92rem; font-weight: 750; overflow-wrap: anywhere; }
+.fare-gear div:last-child dd { color: var(--signal); }
+.page-mast[class*="wardrobe-"]::before { inset-inline-start: 38%; background-position: center 41%; }
+.page-mast[class*="wardrobe-"]::after { background: linear-gradient(108deg,#0c172b 15%,#0c172bf2 39%,#0c172b18 76%,transparent); }
+.wardrobe-price::before { background-image: url("./assets/img/5g-look-price.jpg"); }
+.wardrobe-spec::before { background-image: url("./assets/img/5g-look-spec.jpg"); }
+.wardrobe-guide::before { background-image: url("./assets/img/5g-look-guide.jpg"); }
+.wardrobe-faq::before { background-image: url("./assets/img/5g-look-faq.jpg"); }
+.wardrobe-contact::before { background-image: url("./assets/img/5g-look-contact.jpg"); }
+.wardrobe-terms::before { background-image: url("./assets/img/5g-look-terms.jpg"); }
+.wardrobe-privacy-policy::before { background-image: url("./assets/img/5g-look-privacy-policy.jpg"); }
+.wardrobe-cookie-policy::before { background-image: url("./assets/img/5g-look-cookie-policy.jpg"); }
+.wardrobe-antisocial-exclusion::before { background-image: url("./assets/img/5g-look-antisocial-exclusion.jpg"); }
+.wardrobe-information-security::before { background-image: url("./assets/img/5g-look-information-security.jpg"); }
+.wardrobe-tokushoho::before { background-image: url("./assets/img/5g-look-tokushoho.jpg"); }
+@media (max-width: 760px) {
+  .new-stage-art { position: relative; inset: auto; z-index: 0; }
+  .new-stage-art img { height: auto; object-fit: contain; }
+  .new-stage::after { content: none; }
+  .new-stage-inner { min-height: 0; }
+  .new-stage-copy { width: 100%; padding-block: 26px 36px; }
+  .new-stage h1 { margin-bottom: 14px; }
+  .new-stage-speed { font-size: clamp(4.4rem,17vw,7rem); }
+  .new-stage .btn { width: 100%; }
+  .page-mast[class*="wardrobe-"]::before { inset-inline-start: 15%; }
+}
