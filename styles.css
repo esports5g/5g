@@ -527,3 +527,27 @@ input, textarea, select { color: var(--ink); background: #0b1426; border-color: 
   .page-mast[class*="wardrobe-"]::after { background: linear-gradient(0deg,#0c172be8 0%,#0c172b72 40%,transparent 75%); }
   .contact-content #contactForm .btn { width: 100%; }
 }
+
+/* A lighter navigation surface keeps the original red emblem legible. */
+.hdr {
+  background: #e5edf6;
+  color: #13263b;
+  border-bottom-color: #a9bccf;
+}
+.hdr .brand-logo, .home-page .brand-logo { height: clamp(46px,6vw,58px); }
+.hdr #nav a:is(:hover,.is-active) { color: #0c2742; background: #cadaee; }
+.hdr #lang-switch { border-color: #7c96b0; }
+.hdr :focus-visible { outline-color: #22537d; }
+.visit-panel {
+  margin-bottom: clamp(40px,6vw,80px);
+  padding: clamp(20px,4vw,52px);
+  border: 1px solid #486a94;
+  background: linear-gradient(125deg,#172947,#10192a);
+}
+.visit-panel h2 { margin-bottom: 20px; font-size: clamp(1.5rem,3.5vw,2.7rem); }
+.visit-details { display: flex; flex-wrap: wrap; align-items: end; justify-content: space-between; gap: 18px 32px; }
+.visit-details address { font-style: normal; }
+.visit-hours { color: var(--signal); font-weight: 800; margin: 0 0 5px; }
+.visit-details .btn { color: var(--signal); }
+.visit-details .btn:hover { background: #203958; }
+@media (max-width: 500px) { .visit-details .btn { width: 100%; } }
