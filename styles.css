@@ -307,3 +307,105 @@ input, textarea, select { color: var(--ink); background: #0b1426; border-color: 
   .stage-art::before { inset: 0 0 30% 0; clip-path: polygon(0 0,100% 0,100% 65%,0 100%); }
   .stage-art::after { background: linear-gradient(0deg,#0a1223 30%,#0a1223b8 53%,#0a122300 86%); }
 }
+
+/* The homepage's diagonal framing continues on interior pages. */
+.page-mast {
+  isolation: isolate;
+  position: relative;
+  overflow: hidden;
+  display: grid;
+  align-items: end;
+  min-height: clamp(185px, 24vw, 345px);
+  padding-block: clamp(30px, 5vw, 75px);
+  background: #101d34;
+  border-bottom: 1px solid #597db1;
+}
+.page-mast h1 {
+  position: relative;
+  z-index: 1;
+  margin: 0;
+  max-width: 22ch;
+  padding: 0;
+  border: 0;
+  color: #f7fbff;
+  font-size: clamp(2.25rem, 6vw, 5rem);
+  font-weight: 850;
+  line-height: 1.08;
+  letter-spacing: -.06em;
+  text-wrap: balance;
+}
+.page-mast::after {
+  position: absolute;
+  z-index: -1;
+  inset: 0;
+  content: "";
+  background: linear-gradient(120deg, #0c172b 12%, #0c172be5 35%, #0c172b39 82%),
+    repeating-linear-gradient(126deg, transparent 0 105px, #83b9f038 106px 107px);
+}
+.page-mast::before {
+  position: absolute;
+  z-index: -2;
+  content: "";
+  inset: 0 0 0 30%;
+  background: linear-gradient(125deg, #172949, #0d1426);
+  background-position: 66% 43%;
+  background-size: cover;
+  clip-path: polygon(23% 0, 100% 0, 100% 100%, 0 100%);
+}
+.mast-rig::before { background-image: url("./assets/img/5g-rig-concept.jpg"); }
+.mast-mascot::before { background-image: url("./assets/img/5g-mascot.jpg"); background-position: 58% 34%; }
+.page-mast + .panel { padding-top: clamp(30px,6vw,80px); }
+.page > .page-mast { margin-bottom: 36px; padding-inline: clamp(18px,4vw,42px); }
+.page > .page-mast .wrap { width: 100%; }
+.page > .page-mast h1 { font-size: clamp(1.9rem,5vw,3.8rem); max-width: none; }
+.contact-shell .page-mast {
+  min-height: clamp(145px,20vw,250px);
+  padding-inline: clamp(16px,4vw,38px);
+  margin-bottom: 24px;
+}
+.contact-shell .page-mast h1 { font-size: clamp(1.6rem,4.5vw,3.15rem); }
+
+.fare-grid { gap: clamp(10px,2vw,24px); }
+.fare-grid .card {
+  min-width: 0;
+  border-top: 3px solid #5877a5;
+  background: linear-gradient(145deg,#1a2b49,#10192a);
+}
+.fare-grid .card.hot { border-top-color: #a4dfff; background: linear-gradient(145deg,#294776,#152644); }
+.fare-grid .card h3 { margin-bottom: 16px; }
+.fare-grid .price { margin: 0; line-height: 1; }
+.fare-grid .price strong {
+  display: block;
+  font-size: clamp(4rem,8vw,7rem);
+  font-style: italic;
+  letter-spacing: -.1em;
+  font-variant-numeric: tabular-nums;
+}
+.fare-grid .price span { display: block; margin-block: 8px 20px; color: #e3efff; font-size: 1rem; }
+.fare-grid ul { border-top: 1px solid #6680a687; padding-block-start: 15px; margin-bottom: 0; }
+.topup-table { border: 1px solid #607caa; box-shadow: 0 12px 24px #060d1b55; }
+.topup-table table { table-layout: fixed; }
+.topup-table :is(th,td) { padding-block: clamp(10px,2vw,21px); }
+.topup-table thead th { color: #061927; background: #b7eaff; border-color: #7ba9ca; }
+.topup-table tbody tr:nth-child(even) { background: #172644; }
+.topup-table tbody td:first-child { font-weight: 780; }
+.topup-table tbody td:last-child { color: #b7eaff; font-weight: 850; font-size: clamp(.95rem,2.15vw,1.6rem); }
+.view-spec .card { border-top: 3px solid #5877a5; }
+.view-spec .card:first-child { border-top-color: #b7eaff; }
+.guide-grid > :first-child { border-top: 3px solid #b7eaff; }
+.guide-grid ol li { margin-bottom: 12px; padding-inline-start: .25em; }
+.guide-grid ol li::marker { color: #b7eaff; font-weight: 850; }
+.faq-list { display: grid; gap: 10px; max-width: 980px; margin-inline: auto; }
+.faq-item { background: #10192a; border: 1px solid #344664; }
+.faq-item summary { padding: 16px 20px; font-weight: 800; cursor: pointer; }
+.faq-item summary::marker { color: #b7eaff; }
+.faq-item[open] summary { color: #b7eaff; border-bottom: 1px solid #344664; }
+.faq-item > div { padding: 16px 20px; }
+.faq-item p:last-child { margin: 0; }
+.status.err { color: #ffada5; }
+@media (max-width: 720px) {
+  .page-mast::before { inset-inline-start: 10%; }
+  .page-mast::after { background: linear-gradient(95deg,#0c172bf5,#0c172b3d); }
+  .topup-table :is(th,td) { padding-inline: 4px; font-size: .875rem; }
+  .fare-grid .price strong { font-size: clamp(3.6rem,15vw,6.5rem); }
+}
