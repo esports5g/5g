@@ -118,3 +118,33 @@
     }
   });
 })();
+
+/* Ambient light follows mouse movement without replacing the native cursor. */
+(function () {
+  if (!matchMedia('(any-hover: hover) and (any-pointer: fine) and (prefers-reduced-motion: no-preference)').matches) return;
+  const light = document.createElement('div');
+  light.className = 'cursor-glow';
+  light.setAttribute('aria-hidden', 'true');
+  document.body.append(light);
+  let frame = 0;
+  let x = 0, y = 0;
+  window.addEventListener('pointermove', (event) => {
+    if (event.pointerType !== 'mouse') return;
+    x = event.clientX;
+    y = event.clientY;
+    if (frame) return;
+    frame = requestAnimationFrame(() => {
+      light.style.setProperty('--glow-x', x + 'px');
+      light.style.setProperty('--glow-y', y + 'px');
+      light.classList.add('is-visible');
+      frame = 0;
+    });
+  }, { passive: true });
+  const hide = () => {
+    cancelAnimationFrame(frame);
+    frame = 0;
+    light.classList.remove('is-visible');
+  };
+  document.documentElement.addEventListener('pointerleave', hide);
+  window.addEventListener('blur', hide);
+})();

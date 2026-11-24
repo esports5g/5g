@@ -552,17 +552,6 @@ input, textarea, select { color: var(--ink); background: #0b1426; border-color: 
 .visit-details .btn:hover { background: #203958; }
 @media (max-width: 500px) { .visit-details .btn { width: 100%; } }
 
-/* Low-contrast circuitry keeps the content readable on a darker canvas. */
-:root { --paper: #0a1222; }
-body {
-  background-color: var(--paper);
-  background-image:
-    radial-gradient(ellipse at 84% 4%, #26549333, transparent 49rem),
-    radial-gradient(ellipse at 7% 46%, #123e6630, transparent 46rem),
-    linear-gradient(#7aaee40d 1px, transparent 1px),
-    linear-gradient(90deg, #7aaee40d 1px, transparent 1px);
-  background-size: auto, auto, 48px 48px, 48px 48px;
-}
 .visit-map {
   display: block;
   width: 100%;
@@ -570,4 +559,89 @@ body {
   margin-top: 24px;
   border: 1px solid #5c7ca5;
   background: #dce6ed;
+}
+
+/* Star fields share the same color palette as the hero artwork. */
+body {
+  isolation: isolate;
+  background-color: #080e20;
+  background-image:
+    radial-gradient(circle at 98% 64%, rgba(180,222,255,0.28) 1.25px, transparent 2.1px),
+    radial-gradient(circle at 46% 22%, rgba(180,222,255,0.34) .65px, transparent 1.45px),
+    radial-gradient(circle at 63% 13%, rgba(180,222,255,0.4) .65px, transparent 1.45px),
+    radial-gradient(circle at 69% 91%, rgba(180,222,255,0.28) .65px, transparent 1.45px),
+    radial-gradient(circle at 82% 6%, rgba(180,222,255,0.34) .65px, transparent 1.45px),
+    radial-gradient(circle at 7% 11%, rgba(180,222,255,0.4) .65px, transparent 1.45px),
+    radial-gradient(circle at 49% 13%, rgba(180,222,255,0.28) .65px, transparent 1.45px),
+    radial-gradient(circle at 53% 53%, rgba(180,222,255,0.34) .65px, transparent 1.45px),
+    radial-gradient(circle at 3% 13%, rgba(180,222,255,0.4) .65px, transparent 1.45px),
+    radial-gradient(circle at 24% 58%, rgba(180,222,255,0.28) 1.25px, transparent 2.1px),
+    radial-gradient(circle at 40% 69%, rgba(180,222,255,0.34) .65px, transparent 1.45px),
+    radial-gradient(circle at 36% 88%, rgba(180,222,255,0.4) .65px, transparent 1.45px),
+    radial-gradient(circle at 71% 3%, rgba(180,222,255,0.28) .65px, transparent 1.45px),
+    radial-gradient(circle at 1% 48%, rgba(180,222,255,0.34) .65px, transparent 1.45px),
+    radial-gradient(circle at 74% 73%, rgba(180,222,255,0.4) .65px, transparent 1.45px),
+    radial-gradient(circle at 22% 30%, rgba(180,222,255,0.28) .65px, transparent 1.45px),
+    radial-gradient(circle at 15% 52%, rgba(180,222,255,0.34) .65px, transparent 1.45px),
+    radial-gradient(circle at 56% 68%, rgba(180,222,255,0.4) .65px, transparent 1.45px),
+    radial-gradient(circle at 29% 63%, rgba(180,222,255,0.28) 1.25px, transparent 2.1px),
+    radial-gradient(circle at 66% 81%, rgba(180,222,255,0.34) .65px, transparent 1.45px),
+    radial-gradient(circle at 86% 22%, rgba(180,222,255,0.4) .65px, transparent 1.45px),
+    radial-gradient(circle at 73% 56%, rgba(180,222,255,0.28) .65px, transparent 1.45px),
+    radial-gradient(circle at 77% 84%, rgba(180,222,255,0.34) .65px, transparent 1.45px),
+    radial-gradient(circle at 94% 6%, rgba(180,222,255,0.4) .65px, transparent 1.45px),
+    radial-gradient(circle at 6% 6%, rgba(180,222,255,0.28) .65px, transparent 1.45px),
+    radial-gradient(circle at 27% 91%, rgba(180,222,255,0.34) .65px, transparent 1.45px),
+    radial-gradient(circle at 67% 60%, rgba(180,222,255,0.4) .65px, transparent 1.45px),
+    radial-gradient(circle at 96% 87%, rgba(180,222,255,0.28) 1.25px, transparent 2.1px),
+    radial-gradient(circle at 38% 73%, rgba(180,222,255,0.34) .65px, transparent 1.45px),
+    radial-gradient(circle at 100% 54%, rgba(180,222,255,0.4) .65px, transparent 1.45px),
+    radial-gradient(circle at 34% 67%, rgba(180,222,255,0.28) .65px, transparent 1.45px),
+    radial-gradient(circle at 4% 29%, rgba(180,222,255,0.34) .65px, transparent 1.45px),
+    radial-gradient(circle at 87% 23%, rgba(180,222,255,0.4) .65px, transparent 1.45px),
+    radial-gradient(circle at 75% 39%, rgba(180,222,255,0.28) .65px, transparent 1.45px),
+    radial-gradient(ellipse at 88% 0%, #203b7454, transparent 56rem),
+    radial-gradient(ellipse at 8% 55%, #16386142, transparent 48rem);
+  background-size: 670px 590px, 670px 590px, 670px 590px, 670px 590px, 670px 590px, 670px 590px, 670px 590px, 670px 590px, 670px 590px, 670px 590px, 670px 590px, 670px 590px, 670px 590px, 670px 590px, 670px 590px, 670px 590px, 670px 590px, 670px 590px, 670px 590px, 670px 590px, 670px 590px, 670px 590px, 670px 590px, 670px 590px, 670px 590px, 670px 590px, 670px 590px, 670px 590px, 670px 590px, 670px 590px, 670px 590px, 670px 590px, 670px 590px, 670px 590px, auto, auto;
+}
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: -1;
+  background-image:
+    radial-gradient(circle at 50% 13%, rgba(180,222,255,0.46) 1.25px, transparent 2.1px),
+    radial-gradient(circle at 52% 26%, rgba(180,222,255,0.52) .65px, transparent 1.45px),
+    radial-gradient(circle at 42% 44%, rgba(180,222,255,0.5800000000000001) .65px, transparent 1.45px),
+    radial-gradient(circle at 6% 17%, rgba(180,222,255,0.46) .65px, transparent 1.45px),
+    radial-gradient(circle at 93% 30%, rgba(180,222,255,0.52) .65px, transparent 1.45px),
+    radial-gradient(circle at 16% 80%, rgba(180,222,255,0.5800000000000001) .65px, transparent 1.45px),
+    radial-gradient(circle at 35% 81%, rgba(180,222,255,0.46) .65px, transparent 1.45px),
+    radial-gradient(circle at 78% 61%, rgba(180,222,255,0.52) .65px, transparent 1.45px),
+    radial-gradient(circle at 61% 66%, rgba(180,222,255,0.5800000000000001) .65px, transparent 1.45px),
+    radial-gradient(circle at 31% 80%, rgba(180,222,255,0.46) 1.25px, transparent 2.1px);
+  background-size: 550px 610px;
+  opacity: .55;
+}
+@media (prefers-reduced-motion: no-preference) {
+  body::before { animation: star-twinkle 7s ease-in-out infinite alternate; }
+}
+@keyframes star-twinkle { from { opacity: .22; } to { opacity: .9; } }
+@media (any-hover: hover) and (any-pointer: fine) and (prefers-reduced-motion: no-preference) {
+  .cursor-glow {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 104px;
+    height: 104px;
+    border-radius: 50%;
+    z-index: 9;
+    pointer-events: none;
+    opacity: 0;
+    background: radial-gradient(circle, #e1f6ffb0 0 2px, #87caff52 7px, #598bf626 25px, transparent 70%);
+    transition: opacity .18s ease;
+    transform: translate3d(calc(var(--glow-x, 0px) - 52px), calc(var(--glow-y, 0px) - 52px), 0);
+  }
+  .cursor-glow.is-visible { opacity: .8; }
 }
