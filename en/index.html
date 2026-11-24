@@ -17,9 +17,11 @@
 <meta content="#0b1020" name="theme-color"/>
 <link href="../assets/site.css" rel="stylesheet"/>
 <link rel="stylesheet" href="../responsive.css">
+<meta name="description" content="A gaming space in Shin-Okubo with monitors up to 610Hz and three seat types to suit your play style.">
 <link rel="stylesheet" href="../assets/home-refresh.css">
-
-</head><body class="home-refresh">
+</head>
+<body class="arena">
+<a class="skip" href="#main">Skip to content</a>
 <header class="hdr">
 <div class="wrap row">
 <a class="brand" href="index.html">
@@ -27,7 +29,7 @@
 <span class="brandtxt">ESPORTS CAFE</span>
 </a>
 <nav class="nav" id="nav">
-<a href="index.html"><span class="jp">Home</span></a>
+<a href="index.html" aria-current="page"><span class="jp">Home</span></a>
 <a href="price.html"><span class="jp">Pricing</span></a>
 <a href="spec.html"><span class="jp">Specs</span></a>
 <a href="guide.html"><span class="jp">Guide</span></a>
@@ -38,21 +40,70 @@
 <button aria-label="menu" class="hamb" id="hamb"><span></span><span></span><span></span></button>
 </div>
 </header>
-
-<section class="hero mp">
-<div class="wrap hero-inner">
-<div class="hero-cta">
-<h1 class="lead">Shin-Okubo’s Ultimate Specs | <span class="hero-specs"><span>R9 9950X3D</span> / <span>RTX 5080</span> / <strong>610Hz</strong><span class="hero-suffix"> / Equipped</span></span></h1>
-<div class="cta">
-<a class="btn primary" href="http://m.esportscafe5g.com">Sign up / Log in / Reservation</a>
+<main id="main" tabindex="-1">
+  <section class="arena-hero" aria-labelledby="arena-title">
+    <picture>
+      <source media="(max-width: 680px)" srcset="../assets/img/stations_angle_mobile_9x16.jpg">
+      <img src="../assets/img/stations_angle.jpg" alt="" fetchpriority="high">
+    </picture>
+    <div class="arena-wrap arena-hero-copy">
+      <p class="arena-kicker">Shin-Okubo, Tokyo</p>
+      <h1 class="arena-title" id="arena-title">ESPORTS<br>CAFE <span>5G</span></h1>
+      <p>A gaming space in Shin-Okubo with monitors up to 610Hz and three seat types to suit your play style.</p>
+      <div class="arena-actions"><a class="arena-button primary" href="http://m.esportscafe5g.com">Register, log in or book</a> <a class="arena-button" href="#seats">Seats and rates</a></div>
+    </div>
+  </section>
+  <div class="arena-stats">
+    <dl class="arena-wrap">
+      <div><dt>CPU</dt><dd>R9 9950X3D</dd></div>
+      <div><dt>GPU</dt><dd>RTX 5080</dd></div>
+      <div><dt>Display</dt><dd>610Hz</dd></div>
+    </dl>
+  </div>
+  <section class="arena-section arena-paper" id="seats" aria-labelledby="seats-title">
+    <div class="arena-wrap">
+      <h2 class="arena-heading" id="seats-title">Find your setup.</h2>
+      <p class="arena-intro">Choose from three seat types. Time played is deducted from your prepaid store points.</p>
+      <div class="arena-tiers">
+        <article class="arena-tier">
+          <img src="../assets/img/open_frame_rig.jpg" alt="" loading="lazy">
+          <h3>Flagship</h3>
+          <p>RTX 5080 · 610Hz</p>
+          <p class="rate"><strong>600</strong> points / hour</p>
+        </article>
+        <article class="arena-tier">
+          <img src="../assets/img/rigs_top_row.jpg" alt="" loading="lazy">
+          <h3>High-spec</h3>
+          <p>RTX 4080 Super · 540Hz</p>
+          <p class="rate"><strong>500</strong> points / hour</p>
+        </article>
+        <article class="arena-tier">
+          <img src="../assets/img/stations_row.jpg" alt="" loading="lazy">
+          <h3>Regular</h3>
+          <p>RTX 3070 · 240Hz</p>
+          <p class="rate"><strong>333</strong> points / hour</p>
+        </article>
+      </div>
+      <div class="arena-actions"><a class="arena-button" href="price.html">Rates and top-ups</a> <a class="arena-button" href="spec.html">Full PC specifications</a></div>
+    </div>
+  </section>
+  <section class="arena-section arena-gallery" aria-labelledby="gallery-title">
+    <div class="arena-wrap">
+      <h2 class="arena-heading" id="gallery-title">Inside the café</h2>
+      <div class="img-grid">
+<figure><button type="button" aria-label="上段PCリグ"><img alt="上段PCリグ" loading="lazy" src="../assets/img/rigs_top_row.jpg"/></button></figure>
+<figure><button type="button" aria-label="席列"><img alt="席列" loading="lazy" src="../assets/img/stations_row.jpg"/></button></figure>
+<figure><button type="button" aria-label="席全景（斜め）"><img alt="席全景（斜め）" loading="lazy" src="../assets/img/stations_angle_gallery.jpg"/></button></figure>
+<figure><button type="button" aria-label="オープンフレームPC"><img alt="オープンフレームPC" loading="lazy" src="../assets/img/open_frame_rig.jpg"/></button></figure>
+<figure><button type="button" aria-label="最新パーツ一式"><img alt="最新パーツ一式" loading="lazy" src="../assets/img/parts_stack.jpg"/></button></figure>
+<figure><button type="button" aria-label="店舗外観"><img alt="店舗外観" loading="lazy" src="../assets/img/building_exterior.jpg"/></button></figure>
 </div>
-</div>
-</div>
-</section>
-<section class="panel wrap news-section">
-<h2 class="st">NEWS</h2>
-<div class="news-unified glass" id="news">
-<article class="news-feature" aria-label="Latest news">
+    </div>
+  </section>
+  <section class="arena-section arena-news" aria-labelledby="news-title">
+    <div class="arena-wrap">
+      <h2 class="arena-heading" id="news-title">News</h2>
+      <article class="news-feature" aria-label="Latest news">
   <div class="news-meta">
     <time datetime="2026-06-16">2026/06/16</time>
     <span class="news-badge">NEW</span>
@@ -60,8 +111,9 @@
   <h3>ROG Strix Morph 96 Wireless Gaming Keyboard Now Available</h3>
   <p>We have introduced the latest ASUS ROG Strix Morph 96 wireless gaming keyboard. Experience its premium typing feel and high-performance gaming features during your visit.</p>
 </article>
-
-  <div class="news-list" role="region" aria-label="More news" tabindex="0">
+      <details class="arena-archive">
+        <summary>Previous announcements</summary>
+        <div class="news-list" aria-label="More news">
       <article class="news-row">
     <div class="news-row__date">
       <time datetime="2026-01-19">2026/01/19</time>
@@ -147,20 +199,29 @@
       </div>
     </article>
   </div>
-</div>
-</section>
-
-<section class="panel wrap" id="gallery">
-<h2 class="st">GALLERY</h2>
-<div class="img-grid">
-<figure><img alt="上段PCリグ" loading="lazy" src="../assets/img/rigs_top_row.jpg"/></figure>
-<figure><img alt="席列" loading="lazy" src="../assets/img/stations_row.jpg"/></figure>
-<figure><img alt="席全景（斜め）" loading="lazy" src="../assets/img/stations_angle_gallery.jpg"/></figure>
-<figure><img alt="オープンフレームPC" loading="lazy" src="../assets/img/open_frame_rig.jpg"/></figure>
-<figure><img alt="最新パーツ一式" loading="lazy" src="../assets/img/parts_stack.jpg"/></figure>
-<figure><img alt="店舗外観" loading="lazy" src="../assets/img/building_exterior.jpg"/></figure>
-</div>
-<script src="../script.js"></script>
+      </details>
+    </div>
+  </section>
+  <section class="arena-section arena-visit" aria-labelledby="visit-title">
+    <div class="arena-wrap">
+      <div>
+        <h2 class="arena-heading" id="visit-title">Play in Shin-Okubo.</h2>
+        <p class="arena-intro">On your first visit, stop by the front desk. Bring your original ID to register as a member.</p>
+        <div class="arena-actions"><a class="arena-button primary" href="https://www.google.com/maps/search/?api=1&amp;query=ESPORTS+CAFE+5G+Shin-Okubo">Open map</a> <a class="arena-button" href="guide.html">First visit guide</a></div>
+      </div>
+      <img src="../assets/img/building_exterior.jpg" alt="Café exterior" loading="lazy">
+    </div>
+  </section>
+</main>
+<footer class="arena-footer">
+  <div class="arena-wrap">
+    <a class="brand" href="index.html">
+<img alt="ESPORTS CAFE 5G" class="brand-logo" src="../assets/img/5G01.png"/>
+<span class="brandtxt">ESPORTS CAFE</span>
+</a>
+    <nav aria-label="Site information"><ul class="f-links footer-policies footer-inline"><li><span class="copyright-inline">© ESPORTS CAFE 5G</span></li><li><a href="privacy-policy.html">Privacy Policy</a></li><li><a href="cookie-policy.html">Cookie Policy</a></li><li><a href="antisocial-exclusion.html">Anti‑Social Exclusion</a></li><li><a href="information-security.html">Information Security</a></li><li><a href="tokushoho.html">Legal Notice</a></li></ul></nav>
+  </div>
+</footer>
 <div aria-modal="true" class="lightbox" id="lightbox" role="dialog">
 <button aria-label="閉じる" class="close" id="lbClose">×</button>
 <div class="nav">
@@ -170,7 +231,6 @@
 <img alt="" id="lbImg" src=""/>
 <div class="caption" id="lbCap"></div>
 </div>
-<footer class="site-footer pro"><div class="container footer-wrap" style="display:block;padding-top:0;text-align:left;overflow-x:auto;white-space:nowrap;padding-bottom:0;margin-top:0"><div class="f-col policies"><ul class="f-links footer-policies footer-inline" style="margin-top:0;display:flex;align-items:center;justify-content:flex-start;list-style:none;padding:0;margin:0;flex-wrap:nowrap;gap:24px"><li style="white-space:nowrap"><span class="copyright-inline">© ESPORTS CAFE 5G</span></li><li style="display:inline-flex;margin:0;padding:0;white-space:nowrap"><a href="privacy-policy.html" style="text-decoration:none;line-height:1.8;white-space:nowrap">Privacy Policy</a></li><li style="display:inline-flex;margin:0;padding:0;white-space:nowrap"><a href="cookie-policy.html" style="text-decoration:none;line-height:1.8;white-space:nowrap">Cookie Policy</a></li><li style="display:inline-flex;margin:0;padding:0;white-space:nowrap"><a href="antisocial-exclusion.html" style="text-decoration:none;line-height:1.8;white-space:nowrap">Anti‑Social Exclusion</a></li><li style="display:inline-flex;margin:0;padding:0;white-space:nowrap"><a href="information-security.html" style="text-decoration:none;line-height:1.8;white-space:nowrap">Information Security</a></li><li style="display:inline-flex;margin:0;padding:0;white-space:nowrap"><a href="tokushoho.html" style="text-decoration:none;line-height:1.8;white-space:nowrap">Legal Notice</a></li></ul></div></div></footer>
-</section>
-  <script src="../script.js"></script>
-</body></html>
+<script src="../script.js" defer></script>
+</body>
+</html>
