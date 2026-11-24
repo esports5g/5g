@@ -23,53 +23,50 @@
 
 </div>
 </header>
-<main class="wrap contact-shell">
-<div class="card">
-<div class="topbar">
-<button aria-label="戻る / 返回 / Back" class="backbtn" id="goBack">
+<main class="contact-page">
+<div class="page-mast mast-mascot wardrobe-contact">
+<img class="page-mast-art" src="./assets/img/5g-look-contact.jpg" width="768" height="341" alt="" decoding="async"><div class="wrap"><h1>お問い合わせ</h1></div></div>
+<section class="wrap contact-content">
+<div class="contact-intro"><button aria-label="戻る" class="backbtn" id="goBack">
 <span class="arr">←</span>
-<span class="txt">戻る / Back</span>
-</button>
-</div>
-<div class="page-mast mast-mascot wardrobe-contact"><h1>お問い合わせ / 联系我们 / Contact</h1></div>
-<p class="lead">ご質問・お見積り・予約など、こちらのフォームからお気軽にお送りください。送信後、自動返信はありませんが、担当より折り返しご連絡いたします。</p>
-
+<span class="txt">戻る</span>
+</button><p>ご質問、団体利用のお見積もり、予約に関するご相談は、こちらのフォームよりお問い合わせください。内容を確認のうえ、担当者よりご連絡いたします。</p></div>
 <form action="#" data-gas-only="1" id="contactForm" method="POST">
 <div class="row">
 <div>
-<label class="req" for="name">お名前 / 姓名 / Name</label>
-<input id="name" maxlength="80" name="name" placeholder="例）山田 太郎 / 张三 / Alex" required=""/>
+<label class="req" for="name">お名前 <span class="required-mark">必須</span></label>
+<input autocomplete="name" id="name" maxlength="80" name="name" placeholder="例：山田 太郎" required=""/>
 </div>
 <div>
-<label class="req" for="email">メール / 邮箱 / Email</label>
-<input id="email" maxlength="120" name="email" placeholder="you@example.com" required="" type="email"/>
+<label class="req" for="email">メールアドレス <span class="required-mark">必須</span></label>
+<input autocomplete="email" id="email" maxlength="120" name="email" placeholder="you@example.com" required="" type="email"/>
 </div>
 </div>
 <div class="row">
 <div>
-<label for="phone">電話番号 / 电话 / Phone</label>
-<input id="phone" maxlength="30" name="phone" placeholder="080-XXXX-XXXX"/>
+<label for="phone">電話番号</label>
+<input autocomplete="tel" type="tel" id="phone" maxlength="30" name="phone" placeholder="080-XXXX-XXXX"/>
 </div>
 <div>
-<label for="topic">用件 / 主题 / Topic</label>
+<label for="topic">お問い合わせ種別</label>
 <select id="topic" name="topic">
 <option value="general">一般お問い合わせ</option>
-<option value="estimate">団体利用の見積もり / 团体报价</option>
-<option value="support">苦情 / 意见</option>
+<option value="estimate">団体利用のお見積もり</option>
+<option value="support">ご意見・ご要望</option>
 </select>
 </div>
 </div>
 <div>
-<label class="req" for="message">内容 / 内容 / Message</label>
-<textarea id="message" maxlength="2000" name="message" placeholder="できるだけ詳しくご記入ください / 请尽量详细说明..." required="" rows="6"></textarea>
+<label class="req" for="message">お問い合わせ内容 <span class="required-mark">必須</span></label>
+<textarea id="message" maxlength="2000" name="message" placeholder="お問い合わせ内容をご記入ください" required="" rows="6"></textarea>
 <div class="hint">最大 2000 文字</div>
 </div>
 
 <input autocomplete="off" name="website" style="position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden" tabindex="-1" type="text"/>
-<button class="btn" type="submit">送信 / 发送 / Send</button>
-<div class="status" id="status"></div>
+<button class="btn" type="submit">送信する</button>
+<div class="status" id="status" role="status" aria-live="polite"></div>
 </form>
-</div>
+</section>
 </main>
 <footer class="site-footer pro">
 <div class="container footer-wrap">

@@ -483,3 +483,47 @@ input, textarea, select { color: var(--ink); background: #0b1426; border-color: 
   .new-stage .btn { width: 100%; }
   .page-mast[class*="wardrobe-"]::before { inset-inline-start: 15%; }
 }
+
+/* Render the outfit banners as images so the characters survive narrow layouts. */
+.page-mast[class*="wardrobe-"]::before { content: none; }
+.page-mast-art {
+  position: absolute;
+  z-index: -2;
+  inset: 0 0 0 auto;
+  width: min(69%, 880px);
+  height: 100%;
+  object-fit: cover;
+  object-position: center 38%;
+}
+.page-mast[class*="wardrobe-"]::after {
+  background: linear-gradient(90deg,#0c172b 18%,#0c172bf2 32%,#0c172b22 65%,transparent 87%);
+}
+.contact-page .page-mast { min-height: clamp(180px, 24vw, 330px); }
+.contact-content {
+  --form-line: #cbd4dd;
+  max-width: 880px;
+  margin-block: clamp(28px, 6vw, 72px);
+  padding: clamp(16px, 5vw, 52px);
+  color: #172733;
+  background: #f8fafb;
+  color-scheme: light;
+  border-top: 4px solid #7bbbe2;
+}
+.contact-intro { margin-bottom: 24px; border-bottom: 1px solid var(--form-line); }
+.contact-intro .backbtn { margin-bottom: 16px; color: #26445e; font-size: .9rem; }
+.contact-content #contactForm { gap: 20px; }
+.contact-content #contactForm .row { gap: 18px; }
+.contact-content #contactForm label { margin-bottom: 7px; }
+.contact-content :is(input,select,textarea) { color: #172733; background: #fff; border-color: #9baebe; border-radius: 4px; }
+.contact-content :is(input,select,textarea):focus-visible { outline-color: #1e5b82; }
+.contact-content .required-mark { display: inline-block; margin-inline-start: .35em; color: #234762; background: #e4eef5; font-size: .72rem; padding: 1px 6px; border-radius: 3px; vertical-align: .09em; }
+.contact-content .hint { color: #496174; margin-top: 3px; }
+.contact-content #contactForm .btn { color: #fff; background: #183e5d; border-color: #183e5d; min-width: 132px; }
+.contact-content .status.ok { color: #145a44; }
+.contact-content .status.err { color: #9a312e; }
+@media (max-width: 720px) {
+  .page-mast-art { width: 100%; object-fit: cover; object-position: center 34%; }
+  .page-mast[class*="wardrobe-"] { min-height: 210px; }
+  .page-mast[class*="wardrobe-"]::after { background: linear-gradient(0deg,#0c172be8 0%,#0c172b72 40%,transparent 75%); }
+  .contact-content #contactForm .btn { width: 100%; }
+}
