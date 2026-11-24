@@ -17,18 +17,9 @@
 <meta content="#0b1020" name="theme-color"/>
 <link href="assets/site.css" rel="stylesheet"/>
 </link><link rel="stylesheet" href="responsive.css">
-<style>
-@media (max-width: 767px){
-  .hero.mp{ background: url('./assets/img/stations_angle_mobile_9x16.jpg') center/contain no-repeat !important; }
-}
-@media (max-width: 767px) and (min-width: 0px){
-  /* keep a subtle underlay to avoid perceived borders */
-  .hero.mp::before{ content:""; position:absolute; inset:0; background: url('./assets/img/stations_angle_mobile_9x16.jpg') center/cover no-repeat; filter: blur(10px); opacity: .35; }
-  .hero-inner{ position: relative; z-index: 1; }
-}
-</style>
+<link rel="stylesheet" href="./assets/home-refresh.css">
 
-</head><body>
+</head><body class="home-refresh">
 <header class="hdr">
 <div class="wrap row">
 <a class="brand" href="index.html">
@@ -48,10 +39,10 @@
 </div>
 </header>
 
-<section class="hero mp" style="background: url('./assets/img/stations_angle.jpg') center/cover no-repeat;">
+<section class="hero mp">
 <div class="wrap hero-inner">
 <div class="hero-cta">
-<p class="lead">新大久保の最強スペック｜R9 9950X3D /RTX 5080 / 610Hz /搭載</p>
+<h1 class="lead">新大久保の最強スペック｜<span class="hero-specs"><span>R9 9950X3D</span> /<span>RTX 5080</span> / <strong>610Hz</strong><span class="hero-suffix"> /搭載</span></span></h1>
 <div class="cta">
 <a class="btn primary" href="http://portal.esportscafe5g.com">登録／ログイン／予約</a>
 </div>
@@ -66,7 +57,7 @@
    <p>ASUS ROG最新ワイヤレスゲーミングキーボード「ROG Strix Morph 96」を店内へ導入いたしました。快適な打鍵感と高い操作性を、ぜひ店頭にてご体験ください。</p> 
   </article>
 
-  <div class="news-list" aria-label="More news">
+  <div class="news-list" role="region" aria-label="More news" tabindex="0">
 
  <article class="news-row"> 
     <div class="news-row__date"> <time datetime="2026-01-19">2026/01/19</time> </div> <div class="news-row__body"> 
