@@ -551,3 +551,23 @@ input, textarea, select { color: var(--ink); background: #0b1426; border-color: 
 .visit-details .btn { color: var(--signal); }
 .visit-details .btn:hover { background: #203958; }
 @media (max-width: 500px) { .visit-details .btn { width: 100%; } }
+
+/* Low-contrast circuitry keeps the content readable on a darker canvas. */
+:root { --paper: #0a1222; }
+body {
+  background-color: var(--paper);
+  background-image:
+    radial-gradient(ellipse at 84% 4%, #26549333, transparent 49rem),
+    radial-gradient(ellipse at 7% 46%, #123e6630, transparent 46rem),
+    linear-gradient(#7aaee40d 1px, transparent 1px),
+    linear-gradient(90deg, #7aaee40d 1px, transparent 1px);
+  background-size: auto, auto, 48px 48px, 48px 48px;
+}
+.visit-map {
+  display: block;
+  width: 100%;
+  height: clamp(290px, 46vw, 440px);
+  margin-top: 24px;
+  border: 1px solid #5c7ca5;
+  background: #dce6ed;
+}
