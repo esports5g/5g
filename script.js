@@ -8,16 +8,10 @@
 
     // Mark current page in nav (works for both / and /en/ pages)
     if(nav){
-      const path = (location.pathname || '').split('/').filter(Boolean);
-      const current = (path[path.length - 1] || 'index.html');
+      const normalize = pathname => pathname.replace(/\/index\.html$/, '/').replace(/\/$/, '') || '/';
+      const current = normalize(location.pathname);
       const links = qsa('a[href]', nav);
-      const hit = links.find(a => {
-        const href = (a.getAttribute('href')||'').split('#')[0];
-        if(!href) return false;
-        // match by last segment to tolerate relative paths
-        const last = href.split('/').filter(Boolean).pop();
-        return last === current;
-      });
+      const hit = links.find(link => normalize(new URL(link.href).pathname) === current);
       if(hit){
         hit.classList.add('is-active');
       }
