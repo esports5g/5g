@@ -696,3 +696,58 @@ body::before {
   }
   .touch-scroll-ready .new-stage-art {overflow:hidden}
 }
+
+/* Decorative page companions leave room for the main content. */
+.mascot-layer,
+.mascot-depth {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+.mascot-layer { z-index: 5; user-select: none; }
+.mascot-depth { visibility: hidden; }
+.mascot-rendered .mascot-depth { visibility: visible; }
+.mascot-rendered .mascot-image { visibility: hidden; }
+.mascot-rail {
+  position: absolute;
+  top: 48%;
+  width: clamp(98px, 10vw, 154px);
+  height: clamp(164px, 34svh, 286px);
+  transform: translateY(-31%);
+}
+.mascot-left { left: clamp(4px, 1.45vw, 24px); }
+.mascot-right { right: clamp(4px, 1.45vw, 24px); }
+.mascot-image {
+  max-width: none;
+  width: 150%;
+  height: 100%;
+  margin-inline: -25%;
+  object-fit: contain;
+  object-position: center bottom;
+  opacity: 0;
+}
+.mascot-page .new-stage-art img,
+.mascot-page .page-mast[class*="wardrobe-"] .page-mast-art { object-position: center 47%; }
+@media (min-width: 1000px) {
+  .mascot-page { --mascot-gutter: clamp(105px, 12vw, 184px); }
+  .mascot-page main > .wrap,
+  .mascot-page main > .panel > .wrap,
+  .mascot-page main:not(.page) > .page-mast > .wrap,
+  .mascot-page .new-stage-inner,
+  .mascot-page main.page {
+    max-width: calc(100% - 2 * var(--mascot-gutter));
+  }
+}
+@media (max-width: 999px) {
+  .mascot-rail {
+    top: auto;
+    bottom: max(7px, env(safe-area-inset-bottom));
+    width: clamp(39px, 8.2vw, 68px);
+    height: clamp(88px, 13svh, 135px);
+    transform: none;
+  }
+  .mascot-left { left: max(4px, env(safe-area-inset-left)); }
+  .mascot-right { right: max(4px, env(safe-area-inset-right)); }
+}
