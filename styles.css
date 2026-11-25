@@ -705,3 +705,46 @@ body::before {
   .page-mast[class*="wardrobe-"] h1 { max-width: 100%; font-size: clamp(1.65rem,6.5vw,2.8rem); }
 }
 
+
+
+/* Homepage venue photography */
+#gallery .gallery-mosaic {
+  grid-template-columns:repeat(12,minmax(0,1fr));
+  grid-template-rows:repeat(2,clamp(210px,25vw,310px));
+  grid-auto-rows:clamp(165px,21vw,260px);
+  gap:10px;
+}
+#gallery .gallery-mosaic figure {
+  position:relative;
+  margin:0;
+  border:1px solid #3b5277;
+  border-radius:8px;
+  background:#101a32;
+  overflow:hidden;
+}
+#gallery .gallery-mosaic figure:first-child {grid-column:span 5;grid-row:span 2}
+#gallery .gallery-mosaic figure:nth-child(2),
+#gallery .gallery-mosaic figure:nth-child(3) {grid-column:span 7}
+#gallery .gallery-mosaic figure:nth-child(n+4) {grid-column:span 4}
+#gallery .gallery-mosaic figure:last-child {grid-column:span 8}
+#gallery .gallery-mosaic button {display:block;width:100%;height:100%;padding:0;border:0}
+#gallery .gallery-mosaic img {width:100%;height:100%;aspect-ratio:auto;object-fit:cover}
+#gallery .gallery-mosaic figcaption {
+  position:absolute;inset:auto 0 0;pointer-events:none;
+  padding:32px 14px 12px;color:#f3f7ff;
+  background:linear-gradient(transparent,#080e20f2);
+}
+#gallery .gallery-mosaic figcaption strong,
+#gallery .gallery-mosaic figcaption span {display:block}
+#gallery .gallery-mosaic figcaption span {font-size:.85rem;line-height:1.45;color:#e0ebfb}
+@media(max-width:720px){
+  #gallery .gallery-mosaic {grid-template-columns:repeat(2,minmax(0,1fr));grid-template-rows:none;grid-auto-rows:auto}
+  #gallery .gallery-mosaic figure:nth-child(n) {grid-column:auto;grid-row:auto}
+  #gallery .gallery-mosaic figure:nth-child(-n+3),
+  #gallery .gallery-mosaic figure:last-child {grid-column:span 2}
+  #gallery .gallery-mosaic button {aspect-ratio:4/3}
+  #gallery .gallery-mosaic figure:first-child button {aspect-ratio:3/4}
+  #gallery .gallery-mosaic figure:nth-child(n+4) {display:flex;flex-direction:column}
+  #gallery .gallery-mosaic figure:nth-child(n+4) button {height:auto}
+  #gallery .gallery-mosaic figure:nth-child(n+4) figcaption {position:static;padding:8px;background:none}
+}
