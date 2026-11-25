@@ -1,4 +1,4 @@
-/* ESPORTS CAFE 5G — clean interactions (no text changes) */
+/* Navigation state and gallery lightbox. */
 (function(){
   function qs(sel, root){ return (root||document).querySelector(sel); }
   function qsa(sel, root){ return Array.from((root||document).querySelectorAll(sel)); }
@@ -17,43 +17,9 @@
       }
     }
 
-    // Header shadow on scroll
-    const hdr = qs('.hdr');
-    function onScroll(){
-      if(!hdr) return;
-      hdr.classList.toggle('is-scrolled', window.scrollY > 4);
-    }
-    onScroll();
-    window.addEventListener('scroll', onScroll, {passive:true});
-
-    // Sync header height for fixed/mobile cases
-    function syncHdr(){
-      if(!hdr) return;
-      document.documentElement.style.setProperty('--hdrHpx', hdr.offsetHeight + 'px');
-    }
-    syncHdr();
-    window.addEventListener('resize', syncHdr, {passive:true});
-
-    // Lightbox (opt-in: if .img-grid exists)
     const imgs = qsa('.img-grid img');
-    if(imgs.length){
-      let lb = qs('#lightbox');
-      if(!lb){
-        lb = document.createElement('div');
-        lb.className = 'lightbox';
-        lb.id = 'lightbox';
-        lb.setAttribute('role','dialog');
-        lb.setAttribute('aria-modal','true');
-        lb.innerHTML = `
-          <button class="close" aria-label="閉じる" id="lbClose">×</button>
-          <div class="nav">
-            <button class="btn" aria-label="前の画像" id="lbPrev">‹</button>
-            <button class="btn" aria-label="次の画像" id="lbNext">›</button>
-          </div>
-          <img id="lbImg" src="" alt="">
-          <div class="caption" id="lbCap"></div>`;
-        document.body.appendChild(lb);
-      }
+    const lb = qs('#lightbox');
+    if (lb && imgs.length) {
       const img  = qs('#lbImg', lb);
       const cap  = qs('#lbCap', lb);
       const prev = qs('#lbPrev', lb);
