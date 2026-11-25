@@ -148,3 +148,94 @@
   document.documentElement.addEventListener('pointerleave', hide);
   window.addEventListener('blur', hide);
 })();
+
+
+/* Mobile controls are progressive enhancement over the existing navigation. */
+(function () {
+  const nav = document.querySelector('.hdr #nav');
+  if (nav) {
+    const english = document.documentElement.lang === 'en';
+    const menu = document.createElement('button');
+    menu.type = 'button';
+    menu.className = 'touch-menu';
+    menu.textContent = english ? 'Menu' : 'メニュー';
+    menu.setAttribute('aria-controls', nav.id);
+    menu.setAttribute('aria-expanded', 'false');
+    nav.before(menu);
+    const close = () => menu.setAttribute('aria-expanded', 'false');
+    menu.addEventListener('click', () => {
+      menu.setAttribute('aria-expanded', String(menu.getAttribute('aria-expanded') === 'false'));
+    });
+    nav.addEventListener('click', (event) => { if (event.target.closest('a')) close(); });
+    document.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape' && menu.getAttribute('aria-expanded') === 'true') {
+        close();
+        menu.focus();
+      }
+    });
+    document.addEventListener('pointerdown', (event) => {
+      if (!nav.contains(event.target) && !menu.contains(event.target)) close();
+    }, { passive: true });
+  }
+
+  const reduced = matchMedia('(prefers-reduced-motion: reduce)');
+  if (reduced.matches) return;
+  const progress = document.createElement('div');
+  progress.className = 'read-progress';
+  progress.setAttribute('aria-hidden','true');
+  document.body.append(progress);
+  let frame = 0;
+  function updateProgress() {
+    if (frame) return;
+    frame = requestAnimationFrame(() => {
+      const range = document.documentElement.scrollHeight - innerHeight;
+      progress.style.setProperty('--read-progress', range > 0 ? Math.max(0, Math.min(scrollY / range, 1)) : 0);
+      frame = 0;
+    });
+  }
+  window.addEventListener('scroll', updateProgress, { passive:true });
+  window.addEventListener('resize', updateProgress);
+  updateProgress();
+
+  const mast = document.querySelector('.new-stage,.page-mast');
+  if (mast) {
+    const shine = document.createElement('span');
+    shine.className = 'touch-shine';
+    shine.setAttribute('aria-hidden','true');
+    mast.classList.add('motion-sweep');
+    mast.append(shine);
+    shine.addEventListener('animationend', () => shine.remove(), { once:true });
+  }
+
+  if ('IntersectionObserver' in window) {
+    const surfaces = document.querySelectorAll('.fare-grid .card, .view-spec .card, .gallery-mosaic figure, .visit-panel, .guide-block, .topup-table, .faq-item');
+    const observer = new IntersectionObserver((items) => {
+      items.forEach((item) => {
+        if (!item.isIntersecting) return;
+        observer.unobserve(item.target);
+        item.target.classList.add('is-arriving');
+      });
+    }, { threshold:.13 });
+    surfaces.forEach((item, i) => {
+      item.classList.add('motion-surface');
+      item.style.setProperty('--arrival-delay', (i % 3) * 45 + 'ms');
+      observer.observe(item);
+    });
+  }
+
+  if (!('animate' in Element.prototype)) return;
+  const flare = document.createElement('span');
+  flare.className = 'touch-flare';
+  flare.setAttribute('aria-hidden','true');
+  document.body.append(flare);
+  let activeFlare;
+  document.addEventListener('pointerdown', (event) => {
+    if (!['touch','pen'].includes(event.pointerType) || !event.target.closest('a,button,summary')) return;
+    activeFlare?.cancel();
+    const position = 'translate3d(' + (event.clientX - 45) + 'px,' + (event.clientY - 45) + 'px,0) ';
+    activeFlare = flare.animate([
+      { transform:position + 'scale(.18)', opacity:.82 },
+      { transform:position + 'scale(1.2)', opacity:0 }
+    ], { duration:380, easing:'ease-out' });
+  }, { passive:true });
+})();
