@@ -728,8 +728,7 @@ body::before {
   object-position: center bottom;
   opacity: 0;
 }
-.mascot-page .new-stage-art img,
-.mascot-page .page-mast[class*="wardrobe-"] .page-mast-art { object-position: center 47%; }
+.mascot-page .new-stage-art img { object-position: center 47%; }
 @media (min-width: 1000px) {
   .mascot-page { --mascot-gutter: clamp(105px, 12vw, 184px); }
   .mascot-page main > .wrap,
