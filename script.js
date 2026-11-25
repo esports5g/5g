@@ -242,3 +242,51 @@
     ], { duration:380, easing:'ease-out' });
   }, { passive:true });
 })();
+
+/* Sample only nearby content and keep scrolling native. */
+(function () {
+  const root = document.documentElement;
+  if (root.classList.contains('touch-scroll-ready') || !('IntersectionObserver' in window)) return;
+  root.classList.add('touch-scroll-ready');
+  const enabled = matchMedia('(max-width:980px) and (prefers-reduced-motion:no-preference)');
+  const elements = document.querySelectorAll('.fare-grid .card, .view-spec .card, .gallery-mosaic figure, .guide-block, .topup-table, .visit-panel');
+  const hero = document.querySelector('.new-stage-art img');
+  const near = new Set();
+  const clamp = value => Math.max(0, Math.min(value, 1));
+  let frame = 0;
+  const observer = new IntersectionObserver((entries) => {
+    for (const { target, isIntersecting } of entries) {
+      if (isIntersecting) near.add(target);
+      else near.delete(target);
+    }
+    requestUpdate();
+  }, { rootMargin:'80px 0px' });
+  for (const element of elements) {
+    element.classList.add('scroll-flow');
+    observer.observe(element);
+  }
+  if (hero) observer.observe(hero);
+
+  function requestUpdate() {
+    if (!enabled.matches || frame) return;
+    frame = requestAnimationFrame(() => {
+      frame = 0;
+      const height = innerHeight;
+      const samples = [...near].map(element => [element, element.getBoundingClientRect().top]);
+      for (const [element, top] of samples) {
+        if (element === hero) {
+          hero.style.setProperty('--hero-drift', Math.round(clamp(-top / height) * 12) + 'px');
+          continue;
+        }
+        const progress = clamp((height * .96 - top) / (height * .31));
+        const ease = 1 - (1 - progress) ** 2;
+        element.style.setProperty('--flow-opacity', (.72 + ease * .28).toFixed(3));
+        element.style.setProperty('--flow-offset', ((1 - ease) * 22).toFixed(1) + 'px');
+      }
+    });
+  }
+  window.addEventListener('scroll', requestUpdate, { passive:true });
+  window.addEventListener('resize', requestUpdate);
+  enabled.addEventListener('change', requestUpdate);
+  requestUpdate();
+})();
