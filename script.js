@@ -152,6 +152,9 @@
 
 /* Mobile controls are progressive enhancement over the existing navigation. */
 (function () {
+  const root = document.documentElement;
+  if (root.classList.contains('touch-effects-ready')) return;
+  root.classList.add('touch-effects-ready');
   const nav = document.querySelector('.hdr #nav');
   if (nav) {
     const english = document.documentElement.lang === 'en';
